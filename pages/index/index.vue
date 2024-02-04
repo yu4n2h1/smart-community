@@ -43,7 +43,7 @@
 	
 	.sw-cont {
 		height: 197px;
-		width: 375px;
+		width: 100%;
 	}
 
 	.sw-item .sw-img {
