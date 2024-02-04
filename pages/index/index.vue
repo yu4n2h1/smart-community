@@ -64,9 +64,10 @@
 	  align-content: space-around; /* 多行垂直排列*/
 	  font-size: 20rpx;
 	  font-weight: 600;
+	  align-items: center;
 	}
 	.navItemView{
-	  width: 87rpx;
+	  width: 11.67%;
 	  text-align: center;
 	  margin: 0 50rpx;
 	}
