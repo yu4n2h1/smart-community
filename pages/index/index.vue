@@ -12,6 +12,7 @@
 	<view id="navView">
 	  <view class="navItemView" v-for="(item, index) in navItems" :key="index">
 		<image :src="item.imgSrc"></image>
+		<br>
 		<text>{{ item.text }}</text>
 	  </view>
 	</view>
