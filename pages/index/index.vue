@@ -10,15 +10,16 @@
 	
 	<!-- 导航菜单 -->
 	<view id="navView">
-	  <view class="navItemView" v-for="(item, index) in navItems" :key="index">
-		<image :src="item.imgSrc"></image>
-		<br>
-		<text>{{ item.text }}</text>
+	  <view class="navItemView" v-for="(item, index) in navItems" :key="index" @click="navClick(item.path)">
+			<image :src="item.imgSrc"></image>
+			<br>
+			<text>{{ item.text }}</text>
 	  </view>
 	</view>
 </template>
 
 <script setup>
+	
 	const title = "Hello";
 	const swiperArr = [
 					'/static/img/swiper1.jpg',
@@ -27,13 +28,21 @@
 					'/static/img/swiper4.jpg'
 				];
 	const navItems = [
-		{"imgSrc": "/static/img/home.png" , "text": "心理测评"},
-		{"imgSrc": "/static/img/home-select.png" , "text": "咨询预约"},
-		{"imgSrc": "/static/img/me.png" , "text": "心理答疑"},
-		{"imgSrc": "/static/img/me-select.png" , "text": "心理知识"},
-		{"imgSrc": "/static/img/service.png" , "text": "FM"},
-		{"imgSrc": "/static/img/service-select.png" , "text": "公益中心"},
-	]
+		{"imgSrc": "/static/img/home.png" , "text": "心理测评", path: "/pages/index/index"},
+		{"imgSrc": "/static/img/home-select.png" , "text": "咨询预约", path: "/pages/index/index"},
+		{"imgSrc": "/static/img/me.png" , "text": "心理答疑", path: "/pages/test/test"},
+		{"imgSrc": "/static/img/me-select.png" , "text": "心理知识", path: "/pages/test/test"},
+		{"imgSrc": "/static/img/service.png" , "text": "FM", path: "/pages/test2/test2"},
+		{"imgSrc": "/static/img/service-select.png" , "text": "公益中心", path: "/pages/test2/test2"},
+	];
+	function navClick(url) {
+	  
+	    uni.switchTab({
+	      url
+	    });
+	  
+	};
+	
 </script>
 
 <style>
