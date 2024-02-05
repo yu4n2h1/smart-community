@@ -1,5 +1,5 @@
 <template>
-	
+
 	<view class="sw-view">
 		<swiper class="sw-cont" indicator-dots="true" indicator-active-color="#22CDEE" circular="true" autoplay="true">
 			<swiper-item style="text-align: center" class="sw-item" v-for="(item,index) in swiperArr" :key="index">
@@ -7,51 +7,28 @@
 			</swiper-item>
 		</swiper>
 	</view>
-	
+	<homeTabBar></homeTabBar>
 	<!-- 导航菜单 -->
-	<view id="navView">
-	  <view class="navItemView" v-for="(item, index) in navItems" :key="index" @click="navClick(item.path)">
-			<image :src="item.imgSrc"></image>
-			<br>
-			<text>{{ item.text }}</text>
-	  </view>
-	</view>
 </template>
 
 <script setup>
+	import homeTabBar from "@/pages/index/homeTabBar.vue"
 	
-	const title = "Hello";
 	const swiperArr = [
-					'/static/img/swiper1.jpg',
-					'/static/img/swiper2.jpg',
-					'/static/img/swiper3.jpg',
-					'/static/img/swiper4.jpg'
-				];
-	const navItems = [
-		{"imgSrc": "/static/img/home.png" , "text": "心理测评", path: "/pages/index/index"},
-		{"imgSrc": "/static/img/home-select.png" , "text": "咨询预约", path: "/pages/index/index"},
-		{"imgSrc": "/static/img/me.png" , "text": "心理答疑", path: "/pages/test/test"},
-		{"imgSrc": "/static/img/me-select.png" , "text": "心理知识", path: "/pages/test/test"},
-		{"imgSrc": "/static/img/service.png" , "text": "FM", path: "/pages/test2/test2"},
-		{"imgSrc": "/static/img/service-select.png" , "text": "公益中心", path: "/pages/test2/test2"},
-		{"imgSrc": "/static/img/service3.png" , "text": "服务", path: "/pages/test/test"},
-		{"imgSrc": "/static/img/service3-select.png" , "text": "服务", path: "/pages/test/test"},
+		'/static/img/swiper1.jpg',
+		'/static/img/swiper2.jpg',
+		'/static/img/swiper3.jpg',
+		'/static/img/swiper4.jpg'
 	];
-	function navClick(url) {
-	    uni.switchTab({
-	      url
-	    });
-	};
-	
 </script>
 
 <style>
 	.sw-view {
-		height: 197px;
+		height: calc(197rpx * 2);
 	}
-	
+
 	.sw-cont {
-		height: 197px;
+		height: calc(197rpx * 2);
 		width: 100%;
 	}
 
@@ -60,28 +37,9 @@
 		height: 100%;
 		border-radius: 20rpx 20rpx 20rpx 20rpx;
 	}
-	
+
 	.dh-view {
-		height: 190px;
+		height: calc(190rpx * 2);
 		width: 100%;
-	}
-	
-	#navView{
-	  display: flex;  /* 应用flex布局 ，所有的子元素排在一行*/
-	  flex-wrap: wrap; /* 换行*/
-	  height: 380rpx;
-	  align-content: space-around; /* 多行垂直排列*/
-	  font-size: 20rpx;
-	  font-weight: 600;
-	  align-items: center;
-	}
-	.navItemView{
-	  width: 11.67%;
-	  text-align: center;
-	  margin: 0 50rpx;
-	}
-	.navItemView > image{
-	  width: 87rpx;
-	  height: 87rpx;
 	}
 </style>
