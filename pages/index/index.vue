@@ -3,7 +3,6 @@
 	<swiperView></swiperView>
 	<homeTabBar></homeTabBar>
 	<bulletin></bulletin>
-	<!-- 导航菜单 -->
 </template>
 
 <script setup>
@@ -14,5 +13,4 @@
 </script>
 
 <style>
-	
 </style>
