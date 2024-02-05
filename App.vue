@@ -1,5 +1,7 @@
 <style lang="scss">
 	@import "uview-plus/index.scss";
+	// 自定义全局样式
+	@import url("common/global.scss");
 </style>
 <script>
 	export default {
