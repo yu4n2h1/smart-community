@@ -34,13 +34,13 @@
 		{"imgSrc": "/static/img/me-select.png" , "text": "心理知识", path: "/pages/test/test"},
 		{"imgSrc": "/static/img/service.png" , "text": "FM", path: "/pages/test2/test2"},
 		{"imgSrc": "/static/img/service-select.png" , "text": "公益中心", path: "/pages/test2/test2"},
+		{"imgSrc": "/static/img/service3.png" , "text": "服务", path: "/pages/test/test"},
+		{"imgSrc": "/static/img/service3-select.png" , "text": "服务", path: "/pages/test/test"},
 	];
 	function navClick(url) {
-	  
 	    uni.switchTab({
 	      url
 	    });
-	  
 	};
 	
 </script>
