@@ -36,13 +36,12 @@
 		width: 93%;
 		height: 94%;
 		border-radius: 20rpx 20rpx 20rpx 20rpx;
-		box-shadow: 0 1rpx 12rpx 3rpx #a8a8a8;
+		/* box-shadow: 0 1rpx 12rpx 3rpx #a8a8a8; */
+		filter: drop-shadow( 3rpx 3rpx 12rpx #a8a8a8);
 	}
 	
 	.dh-view {
 		height: calc(190rpx * 2);
 		width: 100%;
-		
-	
 	}
 </style>
