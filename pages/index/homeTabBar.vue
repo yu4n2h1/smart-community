@@ -9,10 +9,8 @@
 					</svg>
 				</view>
 			</view>
-			
 			<text>{{ item.text }}</text>
-		</view>
-		
+		</view>	
 	</view>
 </template>
 

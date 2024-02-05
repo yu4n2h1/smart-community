@@ -20,18 +20,21 @@
 <style>
 	.sw-view {
 		height: calc(197rpx * 2);
+		width: 100%;
 	}
-	
+
 	.sw-cont {
 		height: calc(197rpx * 2);
-		width: 100%;
-		
 	}
+
 	.sw-item {
-		display: flex;
+		display: block;
+		height: calc(197rpx * 2);
+		line-height: calc(197rpx * 2);
 		align-items: center;
 		justify-content: center;
 	}
+
 	.sw-item .sw-img {
 		width: 93%;
 		height: 94%;
