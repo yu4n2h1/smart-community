@@ -15,14 +15,6 @@
 			}
 		},
 		{
-			"path" : "pages/test/test",
-			"style" : 
-			{
-				"navigationBarTitleText" : "服务",
-				"enablePullDownRefresh" : false
-			}
-		},
-		{
 			"path" : "pages/test2/test2",
 			"style" : 
 			{
