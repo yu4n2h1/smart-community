@@ -28,19 +28,10 @@
 		height: calc(197rpx * 2);
 	}
 
-	.sw-item {
-		display: block;
-		height: calc(197rpx * 2);
-		line-height: calc(197rpx * 2);
-		align-items: center;
-		justify-content: center;
-	}
-
 	.sw-item .sw-img {
 		width: 93%;
 		height: 100%;
-		border-radius: 20rpx;
-		/* box-shadow: 0 1rpx 12rpx 3rpx #a8a8a8; */
-		filter: drop-shadow(3rpx 3rpx 12rpx #a8a8a8);
+		border-radius: 20rpx 20rpx 20rpx 20rpx;
+		filter: drop-shadow( 3rpx 3rpx 12rpx #a8a8a8);
 	}
 </style>
