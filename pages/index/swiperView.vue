@@ -1,6 +1,6 @@
 <template>
 	<view class="sw-view">
-		<swiper class="sw-cont" indicator-dots="true" indicator-active-color="#22CDEE" circular="true" autoplay="true">
+		<swiper class="sw-cont" indicator-active-color="#22CDEE" indicator-dots circular autoplay>
 			<swiper-item style="text-align: center" class="sw-item" v-for="(item,index) in swiperArr" :key="index">
 				<image class="sw-img" :src="item"></image>
 			</swiper-item>
@@ -21,6 +21,7 @@
 	.sw-view {
 		height: calc(197rpx * 2);
 		width: 100%;
+		margin-bottom: 20rpx;
 	}
 
 	.sw-cont {
@@ -37,14 +38,9 @@
 
 	.sw-item .sw-img {
 		width: 93%;
-		height: 94%;
-		border-radius: 20rpx 20rpx 20rpx 20rpx;
+		height: 100%;
+		border-radius: 20rpx;
 		/* box-shadow: 0 1rpx 12rpx 3rpx #a8a8a8; */
-		filter: drop-shadow( 3rpx 3rpx 12rpx #a8a8a8);
-	}
-	
-	.dh-view {
-		height: calc(190rpx * 2);
-		width: 100%;
+		filter: drop-shadow(3rpx 3rpx 12rpx #a8a8a8);
 	}
 </style>
