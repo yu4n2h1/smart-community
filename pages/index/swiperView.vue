@@ -31,7 +31,7 @@
 	.sw-item .sw-img {
 		width: 93%;
 		height: 100%;
-		border-radius: 20rpx 20rpx 20rpx 20rpx;
-		filter: drop-shadow( 3rpx 3rpx 12rpx #a8a8a8);
+		border-radius: 20rpx;
+		filter: drop-shadow(3rpx 3rpx 12rpx #a8a8a8);
 	}
 </style>
