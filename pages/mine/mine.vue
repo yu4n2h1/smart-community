@@ -60,7 +60,7 @@
 		flex-direction: column;
 		justify-content: center;
 		// align-items: center;
-		border-radius: 15px;
+		border-radius: calc(15rpx * 2);
 		/* 调整圆角的大小 */
 		overflow: hidden;
 		/* 防止子元素溢出圆角区域 */
@@ -74,16 +74,12 @@
 
 	.top-block {
 		width: 100%;
-		height: 205px;
+		height: calc(205rpx * 2);
 		background: linear-gradient(to bottom, #87CEEB, #ADD8E6, #B0E0E6, #B0E0E6, #CAE1FF);
-		border-bottom-left-radius: 20px;
-		border-bottom-right-radius: 20px;
+		border-bottom-left-radius: calc(20rpx * 2);
+		border-bottom-right-radius: calc(20rpx * 2);
 	}
 </style>
 
 <script setup>
-	<< << << < HEAD
 </script>
-=======
-</script>
->>>>>>> 4dab9d0796022fc98c729c5bf9c33733be1c5a05
