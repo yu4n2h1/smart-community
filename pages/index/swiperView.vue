@@ -1,5 +1,5 @@
 <template>
-	<view class="sw-view">
+	<view class="sw-view" style="align-self: center;">
 		<swiper class="sw-cont" indicator-active-color="#22CDEE" indicator-dots circular autoplay>
 			<swiper-item style="text-align: center" class="sw-item" v-for="(item,index) in swiperArr" :key="index">
 				<image class="sw-img" :src="item"></image>
@@ -21,7 +21,7 @@
 	.sw-view {
 		height: calc(197rpx * 2);
 		width: 100%;
-		margin-bottom: 20rpx;
+
 	}
 
 	.sw-cont {

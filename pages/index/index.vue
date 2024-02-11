@@ -1,10 +1,16 @@
-<template>
-	<search></search>
-	<swiperView></swiperView>
-	<view style="margin-top: 2%;margin-bottom: 2%; display: flex;justify-content: center;">
-		<homeTabBar></homeTabBar>
+<template> 
+	<view style="display: flex; flex-direction: column; background-color: #e6e6e6; height: auto;">
+		<view class="content">
+			<search></search>
+		</view>
+			<swiperView></swiperView>
+		<view class="content" style="display: flex;align-items: center;">
+				<homeTabBar></homeTabBar>
+		</view>
+		<view class="content" style="display: flex;align-items: center;">
+			<bulletin></bulletin>
+		</view>
 	</view>
-	<bulletin></bulletin>
 </template>
 
 <script setup>
@@ -16,4 +22,11 @@
 
 <style>
 
+	.content{
+		background-color: #fff;
+		border-radius: 15rpx;
+		margin: 10rpx 20rpx;
+		padding-bottom: 2%;
+		padding-top: 2%;
+	}
 </style>

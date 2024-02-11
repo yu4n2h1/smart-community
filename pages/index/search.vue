@@ -1,5 +1,5 @@
 <template>
-	<view style="height: 100rpx; display: flex; align-items: center; justify-content: flex-end; margin-right: 3.5%;">
+	<view style="height: 70rpx; display: flex; align-items: center; justify-content: flex-end; margin-right: 3.5%;">
 		<view style="width:21.5% ">
 			<view style="display: flex;justify-content: center;align-items: center; ">
 				<text>朝阳区</text>
