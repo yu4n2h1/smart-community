@@ -1,1 +1,0 @@
-<view wx:for="{{a}}" wx:for-item="item" wx:key="d" class="W"><question wx:if="{{item.c}}" u-s="{{['d']}}" u-i="{{item.b}}" bind:__l="__l" u-p="{{item.c}}">{{item.a}}.</question></view><button class="btn" bindtap="{{b}}">提交</button>

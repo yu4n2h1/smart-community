@@ -1,1 +1,0 @@
-<view style="display:flex;flex-direction:column;background-color:#fafafa;height:100vh"><app-grid wx:if="{{a}}" u-i="475831f2-0" bind:__l="__l" u-p="{{a}}"></app-grid><app-grid wx:if="{{b}}" u-i="475831f2-1" bind:__l="__l" u-p="{{b}}"></app-grid><app-grid u-i="475831f2-2" bind:__l="__l"></app-grid></view>

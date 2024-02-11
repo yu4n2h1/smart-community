@@ -1,1 +1,0 @@
-<view class="navView"><view wx:for="{{a}}" wx:for-item="item" wx:key="d" class="navItemView" bindtap="{{item.e}}"><view style="display:flex;justify-content:center"><view class="img_sty" style="{{item.b}}"><image src="{{item.a}}"></image></view></view><text>{{item.c}}</text></view></view>

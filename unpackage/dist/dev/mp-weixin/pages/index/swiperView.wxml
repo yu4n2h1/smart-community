@@ -1,1 +1,0 @@
-<view class="sw-view"><swiper class="sw-cont" indicator-dots="true" indicator-active-color="#22CDEE" circular="true" autoplay="true"><swiper-item wx:for="{{a}}" wx:for-item="item" wx:key="b" style="text-align:center" class="sw-item"><image class="sw-img" src="{{item.a}}"></image></swiper-item></swiper></view>
