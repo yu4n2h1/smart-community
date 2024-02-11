@@ -1,7 +1,9 @@
 <template>
 	<search></search>
 	<swiperView></swiperView>
-	<homeTabBar></homeTabBar>
+	<view style="margin-top: 2%;margin-bottom: 2%; display: flex;justify-content: center;">
+		<homeTabBar></homeTabBar>
+	</view>
 	<bulletin></bulletin>
 </template>
 
@@ -13,4 +15,5 @@
 </script>
 
 <style>
+
 </style>

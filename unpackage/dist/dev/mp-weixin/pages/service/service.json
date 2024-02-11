@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "服务",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "app-grid": "../../components/appGrid"
+  }
+}

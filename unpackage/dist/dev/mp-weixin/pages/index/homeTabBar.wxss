@@ -1,0 +1,29 @@
+
+.navView {
+		display: flex;
+		flex-wrap: wrap;
+		height: auto;
+		align-content: space-around;
+		justify-content: left;
+		font-style: normal;
+		font-weight: 700;
+		font-size: 12px;
+}
+.navItemView {
+		width: 20%;
+		text-align: center;
+		margin: 0 2.5%;
+		height: 150rpx;
+}
+.img_sty {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100rpx;
+		height: 100rpx;
+		border-radius: 50rpx 50rpx 50rpx 50rpx ;
+}
+.img_sty image{
+		width: 70rpx;
+		height: 70rpx;
+}

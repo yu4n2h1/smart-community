@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "home-tab-bar": "./homeTabBar",
+    "search": "./search",
+    "swiper-view": "./swiperView",
+    "bulletin": "./bulletin"
+  }
+}

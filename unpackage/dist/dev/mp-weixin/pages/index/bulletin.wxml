@@ -1,0 +1,1 @@
+<uni-section wx:if="{{b}}" u-s="{{['d']}}" u-i="1bd737c8-0" bind:__l="__l" u-p="{{b}}"><view class="notice-list"><view wx:for="{{a}}" wx:for-item="item" wx:key="c" class="notice-item"><text>{{item.a}}</text><text>发布时间：{{item.b}}</text></view></view></uni-section>

@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "u-radio": "../uni_modules/uview-plus/components/u-radio/u-radio",
+    "u-radio-group": "../uni_modules/uview-plus/components/u-radio-group/u-radio-group",
+    "u-checkbox": "../uni_modules/uview-plus/components/u-checkbox/u-checkbox",
+    "u-checkbox-group": "../uni_modules/uview-plus/components/u-checkbox-group/u-checkbox-group",
+    "up-input": "../node-modules/uview-plus/components/u-input/u-input"
+  }
+}

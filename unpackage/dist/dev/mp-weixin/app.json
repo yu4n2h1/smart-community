@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/test2/test2",
+    "pages/service/service",
+    "pages/questionnaire/questionnaireAdmin",
+    "pages/questionnaire/questionnaireAdminList",
+    "pages/questionnaire/questionnaireList",
+    "pages/questionnaire/questionnaire",
+    "pages/questionnaire/questionnaireDetail"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#A8A8A8",
+    "selectedColor": "#22CDEE",
+    "list": [
+      {
+        "iconPath": "static/img/home.png",
+        "selectedIconPath": "static/img/home-select.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "static/img/service3.png",
+        "selectedIconPath": "static/img/service3-select.png",
+        "pagePath": "pages/service/service",
+        "text": "服务"
+      },
+      {
+        "iconPath": "static/img/me.png",
+        "selectedIconPath": "static/img/me-select.png",
+        "pagePath": "pages/test2/test2",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
