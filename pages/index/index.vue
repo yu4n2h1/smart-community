@@ -3,12 +3,14 @@
 		<view class="content">
 			<search></search>
 		</view>
+		<view class="content">			
 			<swiperView></swiperView>
+		</view>
 		<view class="content" style="display: flex;align-items: center;">
 				<homeTabBar></homeTabBar>
 		</view>
 		<view class="content" style="display: flex;align-items: center;">
-			<bulletin></bulletin>
+			<bulletin style="width: 100%;"></bulletin>
 		</view>
 	</view>
 </template>
