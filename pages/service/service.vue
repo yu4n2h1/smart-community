@@ -69,6 +69,7 @@
 						icon: '/static/img/like.png',
 						url: '/pages/index/index'
 					},
+					
 				]
 			}
 		},
