@@ -1,5 +1,5 @@
 <template>
-	<view style="display: flex; flex-direction: column; background-color: #fafafa; height: 100vh;">
+	<view style="display: flex; flex-direction: column; background-color: #e6e6e6; height: 100vh;">
 		<!-- 用过 -->
 		<app-grid title="推荐应用" :appList="appList"></app-grid>
 		<!-- 推荐 -->
