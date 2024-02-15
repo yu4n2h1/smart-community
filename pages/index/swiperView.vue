@@ -10,10 +10,10 @@
 
 <script setup>
 	const swiperArr = [
-		'/static/img/swiper1.jpg',
-		'/static/img/swiper2.jpg',
-		'/static/img/swiper3.jpg',
-		'/static/img/swiper4.jpg'
+		'https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/swiper1.jpg',
+		'https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/swiper2.jpg',
+		'https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/swiper3.jpg',
+		'https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/swiper4.jpg'
 	]
 </script>
 

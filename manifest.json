@@ -61,7 +61,11 @@
             "minified" : true
         },
         "usingComponents" : true,
-		"lazyCodeLoading": "requiredComponents"
+		"lazyCodeLoading": "requiredComponents",
+		"optimization": {
+			"subPackages": true
+		},
+		"runmode": "liberate"
     },
     "mp-alipay" : {
         "usingComponents" : true

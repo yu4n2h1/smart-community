@@ -76,6 +76,17 @@
 				selCheckboxList: []
 			};
 		},
+		mounted() {
+			for(let i in this.question.data){
+				console.log(this.question.data[i]);
+				if(this.question.data[i].selected === true &&this.question.flag === 0) {
+					this.selRadio = this.question.data[i].name
+					return
+				} else if(this.question.data[i].selected === true &&this.question.flag === 1){
+					this.selCheckboxList.push(this.question.data[i].name)
+				}
+			}
+		},
 		methods: {
 			radioGroupChange(n){
 				this.question.data.filter((item, index, arr) =>{
