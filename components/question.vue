@@ -1,7 +1,13 @@
+<!-- 
+
+	用来展示 和 填写 问卷 的 问题组件
+
+ -->
 <template>
 	<view class="item">
 		<text><slot></slot>{{question.title}}</text>
 		<text>{{question.descr}}</text>
+		<!-- 单选题 -->
 		<view class="data" v-if="question.flag === 0">
 			<u-radio-group
 				v-model="selRadio"
@@ -18,6 +24,7 @@
 			    </u-radio>
 			  </u-radio-group>
 		</view>
+		<!-- 多选题 -->
 		<view class="data" v-else-if="question.flag === 1">
 			<u-checkbox-group
 				v-model="selCheckboxList"
@@ -34,6 +41,7 @@
 			    </u-checkbox>
 			  </u-checkbox-group>
 		</view>
+		<!-- 问答题 -->
 		<view class="data" v-else-if="question.flag === 2">
 			<up-input
 			    border="surround"
@@ -72,22 +80,33 @@
 		},
 		data() {
 			return {
+				// 单选
 				selRadio: '',
+				// 多选
 				selCheckboxList: []
 			};
 		},
 		mounted() {
-			for(let i in this.question.data){
-				console.log(this.question.data[i]);
-				if(this.question.data[i].selected === true &&this.question.flag === 0) {
-					this.selRadio = this.question.data[i].name
-					return
-				} else if(this.question.data[i].selected === true &&this.question.flag === 1){
-					this.selCheckboxList.push(this.question.data[i].name)
-				}
-			}
+			
 		},
 		methods: {
+			load(){
+				// 初始化函数
+				// 如果 用户填写过问卷 显示填写后的内容
+				for(let i in this.question.data){
+					if(this.question.data[i].selected === true &&this.question.flag === 0) {
+						this.selRadio = this.question.data[i].name
+						return
+					} else if(this.question.data[i].selected === true &&this.question.flag === 1){
+						this.selCheckboxList.push(this.question.data[i].name)
+					}
+				}
+			},
+			
+			/* 
+				依据 选择
+				更改 data 对应值
+			 */
 			radioGroupChange(n){
 				this.question.data.filter((item, index, arr) =>{
 					if(item.name === n){
