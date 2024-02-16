@@ -75,12 +75,7 @@ const submit = () =>{
 						success: () => {
 							setTimeout(() =>{
 								uni.navigateBack({
-									delta: 1,
-									success(){
-										const pages = getCurrentPages()
-										const prevPage = pages[pages.length - 2]
-										prevPage.onShow()
-									}
+									delta: 1
 								})
 							}, 1000)
 						}
