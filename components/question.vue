@@ -87,7 +87,7 @@
 			};
 		},
 		mounted() {
-			
+			this.load()
 		},
 		methods: {
 			load(){
