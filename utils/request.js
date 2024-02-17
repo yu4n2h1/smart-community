@@ -1,4 +1,9 @@
-	
+/* 
+ 
+	Promise 封装 uni.request
+	优雅的返回Promise对象
+ 
+ */
 import sysurl from '../system.config.js'
 	
 export const service = (url, method, data) =>{
