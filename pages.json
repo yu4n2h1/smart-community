@@ -15,60 +15,75 @@
 			}
 		},
 		{
-			"path" : "pages/mine/mine",
-			"style" : 
-			{
-				"navigationBarTitleText" : "我的",
-				"enablePullDownRefresh" : false
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/service/service",
-			"style" : 
-			{
-				"navigationBarTitleText" : "服务",
-				"enablePullDownRefresh" : false
+			"path": "pages/service/service",
+			"style": {
+				"navigationBarTitleText": "服务",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/questionnaire/questionnaireAdmin",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/questionnaire/questionnaireAdmin",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/questionnaire/questionnaireAdminList",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/questionnaire/questionnaireAdminList",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
-		
+
 		{
-			"path" : "pages/questionnaire/questionnaireList",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
-			}
-		},
-		{
-			"path" : "pages/questionnaire/questionnaire",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/questionnaire/questionnaireList",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/questionnaire/questionnaireDetail",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/questionnaire/questionnaire",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/questionnaire/questionnaireDetail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/feedback/feedbackDetail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/feedback/feedbackList",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/feedback/feedbackCreate",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		}
 	],
@@ -82,8 +97,7 @@
 	"tabBar": {
 		"color": "#A8A8A8",
 		"selectedColor": "#22CDEE",
-		"list": [
-			{
+		"list": [{
 				"iconPath": "static/img/home.png",
 				"selectedIconPath": "static/img/home-select.png",
 				"pagePath": "pages/index/index",

@@ -1,0 +1,11 @@
+<!-- 
+	问卷详情页
+	TODO报表
+	TODO筛选
+ -->
+<template>
+	<u-empty
+	        mode="page"
+	>
+	</u-empty>
+</template>
