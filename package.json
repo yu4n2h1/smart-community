@@ -5,7 +5,6 @@
     "uview-plus": "^3.1.45"
   },
   "devDependencies": {
-    "sass": "^1.70.0",
     "sass-loader": "^10.5.2"
   }
 }

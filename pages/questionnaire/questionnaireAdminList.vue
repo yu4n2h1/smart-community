@@ -1,20 +1,34 @@
+<!-- 
+	问卷发布管理列表
+ 
+ -->
+
 <template>
 	<view class="header" :style="[{height: delmode?'100rpx':'0'}]">
+		
+		<!-- TODO全选 -->
 		<button class="header-btn">全选</button>
+		
 		<button class="header-btn" @click="delItem()">删除</button>
 		<button class="header-btn" @click="delmode = !delmode">取消</button>
 	</view>
 	<view class="W">
+		<!-- 列表空提示 -->
 		<view v-if="data.length === 0" class="item-null">当前没有问卷</view>
+		
 		<view class="item" v-for="(item, index) in data" :key="item.id" @click="selItem(index)">
+			
 			<view style="display: flex; justify-content: space-between;">				
 				<text>{{item.name}}</text>
+				
+				<!-- 选择框 -->
 				<view class="item-sel" 
 					:style="[{backgroundColor: dellist[index]?'#22cdee':'#fff', 
 							transform: delmode?'scale(1)':'scale(0)'}]">
 					√
 				</view>
 			</view>
+			
 			<view class="item-btm">
 				<view class="item-time">
 					<u-icon name="clock" style="padding: 7rpx 10rpx 0 0;" color="#98A1BB"></u-icon>
@@ -25,6 +39,8 @@
 			</view>
 		</view>
 	</view>
+	
+	<!-- 右下角 按钮 -->
 	<view class="btn" @click="mored = !mored">
 		<view class="btn-icon" :style="[{transform: mored?'scale(0.8)':'scale(1)'}]">				
 			<u-icon name="grid-fill" color="#fff" size="80rpx"></u-icon>
@@ -57,31 +73,43 @@ import {onShow} from '@dcloudio/uni-app'
 
 let data = reactive([])
 
+// 控制 按钮显示
 let mored = ref(false)
 
+// 控制 顶部菜单
 let delmode = ref(false)
 
+// 存储 需要删除的问卷
 let dellist = reactive([])
 
+// 初始化
 const load = () =>{
+	// （页面切换时）清缓存 
 	data.splice(0, data.length)
+	
+	// 查询 问卷
 	if(!getLocalData('questionnaire-list')) return
 	data.push(...getLocalData('questionnaire-list'))
+	
+	// 初始化删除数组
 	for(let i in data){
 		dellist.push(false)
 	}
 }
 
 onShow(() =>{
+	// uni.navigateBack 时 重新初始化
 	load()
 })
 
+// 问卷详情页 TODO
 const showDetail = () =>{
 	uni.navigateTo({
 		url: '/pages/questionnaire/questionnaireDetail'
 	})
 }
 
+// 创建新问卷
 const create = () =>{
 	uni.navigateTo({
 		url: '/pages/questionnaire/questionnaireAdmin'

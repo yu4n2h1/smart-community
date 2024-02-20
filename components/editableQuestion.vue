@@ -1,10 +1,25 @@
+
+<!-- 
+	可编辑 问题组件
+ -->
+
 <template>
 	<view class="item">
 		<view class="item-tit">
-			<view class="item-tit-lft">				
+			<view class="item-tit-lft">	
+			
+				<!-- 
+					slot 插槽
+					组件传值 传入 题目序号
+				 -->
 				<slot></slot>
+				
 				<input type="text" v-model="question.title" placeholder="题目名称">
 			</view>
+			<!-- 
+				右上角角标
+				更换 题目类型
+			 -->
 			<view class="item-tit-rit">
 				<u-icon name="list" @click="showFlag" color="#22CDEE"></u-icon>
 				<view class="item-lst" :style="[{height : show?'220rpx':'0'}]">
@@ -84,7 +99,10 @@
 		},
 		data() {
 			return {
+				// 右上角角标 是否显示
 				show: false,
+				
+				// 题目类型 数组
 				flagList: [
 					'单选题',
 					'多选题',
@@ -94,6 +112,8 @@
 		},
 		methods: {
 			getDefaultItem(){
+				// 函数 返回值 实现 深拷贝
+				// 返回一个 默认选项
 				let dm = {
 					name: '',
 					selected: false
@@ -104,6 +124,7 @@
 				this.show = !this.show
 			},
 			setFlag(index){
+				// 更改 题目类型
 				this.showFlag()
 				if(this.question.flag === index) return
 				this.question.data.splice(0, this.question.data.length)
@@ -111,6 +132,7 @@
 				this.question.flag = index
 			},
 			delItem(index){
+				// 删除选项
 				// 至少存在一个选项
 				if(this.question.data.length === 1){
 					uni.showToast({
@@ -124,6 +146,7 @@
 				this.question.data.splice(index, 1)
 			},
 			addItem(index){
+				// 增加选项
 				this.question.data.splice(index + 1, 0, this.getDefaultItem())
 			}
 		}
