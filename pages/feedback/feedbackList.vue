@@ -49,6 +49,7 @@
 		methods: {
 			getList() {
 				const url = config.developUrl + "/feedback/findPreviousByFid"
+
 				return new Promise((promise, reject) => {
 					uni.request({
 						url: url,
@@ -57,10 +58,20 @@
 						},
 						success: (res) => {
 							this.oldFeedbackList = this.feedbackList
+							res.data.forEach(feedback => {
+								let date = new Date(feedback.createTime)
+								feedback.createTime =
+									`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`
+								if (feedback.picture) {
+									let pictureList = feedback.picture.split(",")
+									feedback.picture = pictureList.map(url => config.fileUrl +
+										"/feedback/img/" + url)
+								}
+							})
 							this.feedbackList = res.data
 							promise("success")
 						},
-						fail:(err)=> {
+						fail: (err) => {
 							reject("err")
 						}
 					})
@@ -74,23 +85,26 @@
 					})
 				}
 			},
-			
+
 			//加载逻辑，缓存机制待完成
-			load(){
-				this.getList().catch((err)=>{
+			load() {
+				this.getList().then(res => {
+					if (this.feedbackList.length == this.oldFeedbackList.length) {
+						this.status = 'nomore';
+					}
+				}).catch((err) => {
 					this.status = 'nomore';
 				})
 			}
 
 		},
-		onLoad() {
-			console.log("load")
-			this.load()
-		},
+		// onLoad() {
+		// 	this.load()
+		// },
 		onShow() {
 			uni.pageScrollTo({
-				scrollTop:0,
-				duration:0
+				scrollTop: 0,
+				duration: 0
 			})
 			this.load()
 		},
@@ -105,7 +119,7 @@
 					if (this.feedbackList.length == this.oldFeedbackList.length) {
 						this.status = 'nomore';
 					} else this.status = 'loading';
-				}, 2000).catch(()=>{
+				}, 2000).catch(() => {
 					this.status = 'nomore'
 				})
 			})

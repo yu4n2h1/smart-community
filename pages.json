@@ -96,6 +96,14 @@
 				"enablePullDownRefresh" : false
 			}
 			
+		},
+		{
+			"path" : "pages/feedback/feedbackDetail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

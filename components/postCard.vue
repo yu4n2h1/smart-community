@@ -29,17 +29,28 @@
 			</view>
 			<view class="username">
 				{{user.username}}
+				<view class="date" style="
+				            font-size: 0.6rem;
+				            color: #888888;
+				            margin-top: 5rpx; 
+				        ">
+					{{feedback.createTime}}
+				</view>
 			</view>
 		</view>
 
 		<!-- 正文 -->
 		<view class="middle">
-			<view class="title">
+			<up-text class="title" :text="feedback.comment">
 				{{feedback.comment}}
-			</view>
-			<view class="photoList" v-for="(item,index) in feedback.photo" :key="index">
-				<view class="photo">
-					<image :src="item" mode="aspectFill"></image>
+			</up-text>
+			<view style="white-space: nowrap; overflow-x: auto;display: flex;">
+
+				<view class="photoList" v-for="(item,index) in feedback.picture" :key="index"
+					style="margin-right: 10rpx;">
+
+					<image style="width: 200rpx; height: 200rpx;" :src="item" mode="aspectFit"></image>
+
 				</view>
 			</view>
 		</view>
@@ -66,12 +77,13 @@
 				</view>
 			</view>
 		</view>
-		<u-line></u-line>
 	</view>
+	<u-line></u-line>
 </template>
 
 <script setup>
 	import {
+		computed,
 		reactive
 	} from 'vue';
 
@@ -86,7 +98,7 @@
 				picture: [],
 				phone: '10086',
 				like: 0,
-				uid: 114,
+				uid: 114
 			}
 		},
 
@@ -96,7 +108,6 @@
 			default: {}
 		}
 	})
-
 	// 用户信息
 	const user = reactive({
 		id: '',
