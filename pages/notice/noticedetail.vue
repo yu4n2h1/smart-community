@@ -18,22 +18,25 @@
 <script setup>
 	import { service } from "@/api/request.js"
 	import { onBeforeMount, ref } from "vue";
-	
+	import { onLoad, onShow } from "@dcloudio/uni-app";
+
 	const article = ref({});
-	async function fetchArticles() {
+	async function fetchArticles(option) {
+
 	  try {
-	    const response = await service('/article/getContent', 'GET');
+	    const response = await service('/article/getContent', 'GET', option);
 	    article.value = response;
-		console.log(articles);
 	  } catch (error) {
-	    console.error('Error fetching articles:', error);
+	    console.error('Error fetching article:', error);
 	  }
 	}
 	
-	onBeforeMount(() => {
-	  fetchArticles();
-	});
-	
+	// onBeforeMount(() => {
+	//   fetchArticles();
+	// });
+	onLoad((option) => {
+		fetchArticles(option);
+	})
 </script>
 <style>
 	.content :text {
