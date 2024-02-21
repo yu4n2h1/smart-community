@@ -14,7 +14,8 @@
 </template>
 
 <script setup>
-import { service } from "@/api/request.js"
+import { service } from "@/utils/request.js"
+// import { service } from "@/api/request.js"
 import { onBeforeMount, ref } from "vue";
 
 
@@ -22,8 +23,9 @@ import { onBeforeMount, ref } from "vue";
     async function fetchArticles() {
       try {
         const response = await service('/article/getList', 'GET');
-        if (Array.isArray(response)) {
-			articles.value = response;
+		console.log(response)
+        if (Array.isArray(response.data)) {
+			articles.value = response.data;
 			console.log(articles.value);
         } else {
           console.error('Invalid response format.');

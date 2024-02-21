@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-	import { service } from "@/api/request.js"
+	import { service } from "@/utils/request.js"
 	import { onBeforeMount, ref } from "vue";
 	import { onLoad, onShow } from "@dcloudio/uni-app";
 
@@ -25,7 +25,7 @@
 		console.log(option)
 	  try {
 	    const response = await service('/article/getContent?articleId=' + option.articleId, 'GET', option);
-	    article.value = response;
+	    article.value = response.data;
 	  } catch (error) {
 	    console.error('Error fetching article:', error);
 	  }
