@@ -128,41 +128,6 @@
 </script>
 
 <style scoped>
-	.item {
-		width: 702rpx;
-		background-color: #fff;
-		box-shadow: 0 4px 15px 0 rgba(230, 228, 228, 0.52);
-		display: flex;
-		flex-direction: column;
-		margin: 22rpx 0;
-		border-radius: 10px;
-		padding: 20rpx 40rpx;
-		box-sizing: border-box;
-	}
-
-	.item text:nth-child(1) {
-		border-left: 2px solid #768BFF;
-		padding-left: 5rpx;
-		line-height: 40rpx;
-		margin-bottom: 50rpx;
-		font-size: 1.1rem;
-		color: #768BFF;
-	}
-
-	.item-btm {
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.item-time {
-		display: flex;
-		flex-direction: row;
-	}
-
-	.item-time text:nth-child(2) {
-		color: #98A1BB;
-	}
-
 	.btn {
 		position: fixed;
 		top: 80%;
@@ -193,45 +158,5 @@
 		transition: 0.5s ease all;
 		position: absolute;
 		left: 0rpx;
-	}
-
-	.item-null {
-		text-align: center;
-		padding-top: 30rpx;
-		color: #98A1BB;
-	}
-
-	.header {
-		background-color: #768BFF;
-		border-radius: 0 0 15rpx 15rpx;
-		margin-bottom: 20rpx;
-		transition: 0.5s ease all;
-		display: flex;
-		justify-content: space-around;
-		box-shadow: 0 4px 15px 0 rgba(230, 228, 228, 0.52);
-		overflow: hidden
-	}
-
-	.header-btn {
-		width: 200rpx;
-		height: 60rpx;
-		background-color: #fff;
-		color: #768BFF;
-		font-size: 1rem;
-		margin-top: 20rpx;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.item-sel {
-		border: 1px solid #333333;
-		width: 38rpx;
-		height: 38rpx;
-		border-radius: 5rpx;
-		padding-left: 5rpx;
-		box-sizing: border-box;
-		color: #fff;
-		transition: 0.5s ease all;
 	}
 </style>
