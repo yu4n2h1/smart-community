@@ -32,7 +32,7 @@
 					{
 						name: '居民诉求',
 						icon: '/static/img/like.png',
-						url: '/pages/feedback/feedbackCreate'
+						url: '/pages/feedback/feedbackList'
 					},
 					{
 						name: '点',

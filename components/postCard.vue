@@ -37,7 +37,7 @@
 			<view class="title">
 				{{feedback.comment}}
 			</view>
-			<view class="photoList" v-for="(item,index) in feedback.example" :key="index">
+			<view class="photoList" v-for="(item,index) in feedback.photo" :key="index">
 				<view class="photo">
 					<image :src="item" mode="aspectFill"></image>
 				</view>
@@ -66,6 +66,7 @@
 				</view>
 			</view>
 		</view>
+		<u-line></u-line>
 	</view>
 </template>
 
@@ -82,7 +83,7 @@
 				fid: 1,
 				tag: '默认标签',
 				comment: '这是一条评论这是一条评论这是一条评论这是一条评论这是一条评论这是一条评论这是一条评论',
-				example: [],
+				picture: [],
 				phone: '10086',
 				like: 0,
 				uid: 114,

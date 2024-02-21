@@ -77,9 +77,10 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+				"enablePullDownRefresh" : true
 			}
-		}
+		}	
+		
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -1,9 +1,15 @@
+<!-- 
+	反馈内容创建
+	
+ -->
+
 <template>
 
 	<u-form label-position="up" ref="form1" :model="feedback">
 		<u-form-item label="问题和意见" label-width="100" prop="comment" border-bottom ref="item1">
 			<u-textarea v-model="feedback.comment" placeholder="请输入内容" count></u-textarea>
 		</u-form-item>
+		<u-text>上传</u-text>
 		<u-upload :fileList="fileList1" @afterRead="afterRead" @delete="deletePic" name="1" multiple
 			:maxCount="6"></u-upload>
 		<u-form-item label="联系方式(可选)" label-width="130" prop="phone" border-bottom ref="item1">
@@ -15,7 +21,6 @@
 	<u-button type="primary" text="提交" customStyle="margin-top: 20px" class="btn" @click="submit"></u-button>
 	<!-- <u-button type="error" text="重置" customStyle="margin-top: 10px" class="btn" @click="reset"></u-button> -->
 </template>
-
 
 <script setup>
 	import {
@@ -31,7 +36,7 @@
 		phone: "",
 		comment: "",
 		tag: "",
-		picture: ""
+		pictures: []
 	})
 	let rules = reactive({
 		'comment': {
@@ -56,15 +61,15 @@
 
 	function submit() {
 		form1.value.validate().then(res => {
-			const baseURL = config.developUrl;
+			
 			uni.request({
-				url: baseURL + "/feedback/save",
+				url: config.developUrl + "/feedback/save",
 				data: {
 					uid: 222,
 					comment: feedback.comment,
 					phone: feedback.phone,
 					tag: feedback.tag,
-					picture: feedback.picture
+					pictures: feedback.pictures
 				},
 				header: {
 					'Content-Type': 'application/json;charset=UTF-8'
@@ -94,13 +99,14 @@
 	}
 
 	// function reset() {
-	// 	const validateList = ['feedback.content', 'feedback.phone','feedback.tag','feedback.photo']
+	// 	const validateList = ['feedback.content', 'feedback.phone','feedback.tag']
 	// 	form1.value.resetFields()
 	// 	form1.value.clearValidate()
 	// 	setTimeout(() => {
 	// 		form1.value.clearValidate(validateList)
+	// 		fileList1.value.splice(0,fileList1.value.length)
 	// 		// 或者使用 this.$refs.form1.clearValidate()
-	// 	}, 10)
+	// 	}, 100)
 	// }
 
 	function handle(value) {
@@ -111,6 +117,7 @@
 	// 删除图片
 	const deletePic = (event) => {
 	  fileList1.value.splice(event.index, 1);
+	  feedback.pictures.splice(event.index, 1);
 	};
 	
 	// 新增图片
@@ -145,9 +152,9 @@
 	      filePath: url,
 	      name: 'file',
 	      success: (res) => {
-			const picture = JSON.parse(res.data)
-			picUrl = config.fileUrl + "/feedback/img/" + picture.uuidName
-			feedback.picture = res.data
+			const pictures = JSON.parse(res.data)
+			const picUrl = config.fileUrl + "/feedback/img/" + pictures.uuidName
+			feedback.pictures.push(res.data)
 	        setTimeout(() => {
 	          resolve(picUrl);
 	        }, 1000);
