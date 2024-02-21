@@ -30,9 +30,9 @@
 						url: '/pages/questionnaire/questionnaireAdminList'
 					},
 					{
-						name: '',
+						name: '诉求反馈',
 						icon: '/static/img/like.png',
-						url: '/pages/index/index'
+						url: '/pages/feedback/feedbackCreate'
 					},
 					{
 						name: '点',
