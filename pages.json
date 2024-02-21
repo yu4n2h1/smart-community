@@ -73,6 +73,14 @@
 			}
 		},
 		{
+			"path" : "pages/feedback/feedbackList",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : true
+			}
+		},
+		{
 			"path" : "pages/notice/notice",
 			"style" : 
 			{
@@ -88,6 +96,14 @@
 				"enablePullDownRefresh" : false
 			}
 			
+		},
+		{
+			"path" : "pages/feedback/feedbackDetail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {
