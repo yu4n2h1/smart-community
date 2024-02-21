@@ -22,9 +22,9 @@
 
 	const article = ref({});
 	async function fetchArticles(option) {
-
+		console.log(option)
 	  try {
-	    const response = await service('/article/getContent', 'GET', option);
+	    const response = await service('/article/getContent?articleId=' + option.articleId, 'GET', option);
 	    article.value = response;
 	  } catch (error) {
 	    console.error('Error fetching article:', error);
