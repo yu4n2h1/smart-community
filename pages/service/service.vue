@@ -24,11 +24,11 @@
 						icon: '/static/img/question.png',
 						url: '/pages/questionnaire/questionnaireList'
 					},
-					{
-						name: '问卷管理',
-						icon: '/static/img/question.png',
-						url: '/pages/questionnaire/questionnaireAdminList'
-					},
+					// {
+					// 	name: '问卷管理',
+					// 	icon: '/static/img/question.png',
+					// 	url: '/pages/questionnaire/questionnaireAdminList'
+					// },
 					{
 						name: '诉求反馈',
 						icon: '/static/img/like.png',
