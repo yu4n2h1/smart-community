@@ -18,12 +18,12 @@
 			"imgSrc": "/static/img/homeBar/Population_reporting.png",
 		},
 		{
-			"path": "/pages/test/test",
+			"path": "/pages/notice/notice?categoryType=公告通知",
 			"text": "公告通知",
 			"imgSrc": "/static/img/homeBar/Announcement_Notice.png",
 		},
 		{
-			"path": "/pages/test/test",
+			"path": "/pages/notice/notice?categoryType=政务发布",
 			"text": "政务发布",
 			"imgSrc":  "/static/img/homeBar/Chief.png",
 		},
@@ -65,7 +65,7 @@
 		{"filter": "drop-shadow(0px 3px 6px rgba(123, 152, 252, 0.502))", "background": "linear-gradient(140.69deg, #6CA0FC 14.81%, #335CFA 87.27%)"},
 	]
 	function navClick(url) {
-		uni.switchTab({
+		uni.navigateTo({
 			url
 		});
 	};
