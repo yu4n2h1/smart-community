@@ -25,3 +25,24 @@ export const service = (url, method, data) =>{
 	})
 	
 }
+
+export const serviceWithParam = (url, method, data) =>{
+	
+	return new Promise((resolve, reject) =>{
+		
+		uni.request({
+			url: sysurl.developUrl + url,
+			method,
+			data,
+			header:{'content-type':'application/x-www-form-urlencoded'},
+			success: (res) => {
+				resolve(res.data)
+			},
+			fail: (err) => {
+				reject(err)
+			}
+		})
+		
+	})
+	
+}

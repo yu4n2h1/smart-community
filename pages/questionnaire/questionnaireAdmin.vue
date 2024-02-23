@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import editableQuestion from '../../components/editableQuestion.vue'
+import editableQuestion from '../../components/questionnaire/editableQuestion.vue'
 import {onBeforeMount, reactive} from 'vue'
 import {delLocalData, getLocalData, setLocalData} from '../../utils/cache.js'
 
