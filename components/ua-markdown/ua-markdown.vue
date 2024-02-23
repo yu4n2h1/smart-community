@@ -1,6 +1,13 @@
 <!-- uniapp vue3 markdown解析 -->
 <template>
-<view class="ua__markdown"><rich-text space="nbsp" :nodes="parseNodes(source)" @itemclick="handleItemClick"></rich-text></view>
+	<view class="ua__markdown">
+		<u-parse :content="parseNodes(source)" :tag-style="styles">
+			
+		</u-parse> 
+		<!-- space="nbsp" :nodes="parseNodes(source)" @itemclick="handleItemClick"> -->
+			
+		<!-- </rich-text> -->
+	</view>
 </template>
 
 <script setup>
@@ -97,6 +104,34 @@ let {"code-data-index":codeDataIndex,"class":className} = attrs
 			})
 		}
 	}
+	const styles = {
+		img: "border-radius: 10rpx;",
+		h1: "font-family: inherit;  font-weight: 500; line-height: 1.1; color: inherit; margin-top: 20px; margin-bottom: 10px; font-size: 36px",		
+		h2: "font-family: inherit;  font-weight: 500; line-height: 1.1; color: inherit; margin-top: 20px; margin-bottom: 10px; font-size: 30px",		
+		h3: "font-family: inherit;  font-weight: 500; line-height: 1.1; color: inherit; margin-top: 20px; margin-bottom: 10px; font-size: 24px",
+		h4: "font-family: inherit;  font-weight: 500; line-height: 1.1; color: inherit; margin-top: 10px; margin-bottom: 10px; font-size: 18px",
+		h5: "font-family: inherit;  font-weight: 500; line-height: 1.1; color: inherit; margin-top: 10px; margin-bottom: 10px; font-size: 14px",		
+		h6: "font-family: inherit;  font-weight: 500; line-height: 1.1; color: inherit; margin-top: 10px; margin-bottom: 10px; font-size: 12px",
+		a: "background-color: transparent; color: #2196f3; text-decoration: none;",
+		hr: "margin-top: 20px; margin-bottom: 20px; border: 0;border-top: 1px solid #e5e5e5;",
+		img: "max-width: 89%; display: flex; margin-left:auto; margin-right:auto; border-radius: 20rpx; padding-top: 6rpx;",
+		p: "margin: 0 0 8rpx;text-indent: 2em;font-family: 'Inter';font-style: normal;font-weight: 400;font-size: 14px;line-height: 17px;color: #333333;",
+		em: "font-style: italic; font-weight: inherit;",
+		ol: "margin-top: 0; margin-bottom: 10px; padding-left: 40px;",
+		ul: "margin-top: 0; margin-bottom: 10px; padding-left: 40px;",
+		dl: "margin-top: 0; margin-bottom: 20px;",
+		dt: "font-weight: 600; line-height: 1.4;",
+		dd: "line-height: 1.4;",
+		pre: 'position: relativ; z-index: 11; font-family: Menlo, Monaco, Consolas, "Courier New", monospace;',
+		code: 'font-family: Menlo, Monaco, Consolas, "Courier New", monospace;',
+		kbd: 'font-family: Menlo, Monaco, Consolas, "Courier New", monospace;',
+		samp: 'font-family: Menlo, Monaco, Consolas, "Courier New", monospace;',
+		table: "border-spacing: 0; border-collapse: collapse; width: 100%; max-width: 65em;overflow: auto;margin-top: 0;margin-bottom: 16px;border-top: 1px solid #e5e5e5;border: 1px solid #e5e5e5;padding: 6px 13px;font-weight: 600;background-color: #eee;",
+		tr: "border-top: 1px solid #e5e5e5;",
+		th: "border: 1px solid #e5e5e5;padding: 6px 13px;font-weight: 600;background-color: #eee;",
+		td: "border: 1px solid #e5e5e5;padding: 6px 13px;",
+		
+	}
 </script>
 
 <style lang="scss" scoped>
@@ -104,434 +139,5 @@ let {"code-data-index":codeDataIndex,"class":className} = attrs
 	font-size: 14px;
 	line-height: 1.5;
 	word-break: break-all;
-
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: inherit;
-		font-weight: 500;
-		line-height: 1.1;
-		color: inherit;
-	}
-
-	h1,
-	h2,
-	h3 {
-		margin-top: 20px;
-		margin-bottom: 10px
-	}
-
-	h4,
-	h5,
-	h6 {
-		margin-top: 10px;
-		margin-bottom: 10px
-	}
-
-	.h1,
-	h1 {
-		font-size: 36px
-	}
-
-	.h2,
-	h2 {
-		font-size: 30px
-	}
-
-	.h3,
-	h3 {
-		font-size: 24px
-	}
-
-	.h4,
-	h4 {
-		font-size: 18px
-	}
-
-	.h5,
-	h5 {
-		font-size: 14px
-	}
-
-	.h6,
-	h6 {
-		font-size: 12px
-	}
-
-	a {
-		background-color: transparent;
-		color: #2196f3;
-		text-decoration: none;
-	}
-
-	hr,
-	::v-deep .hr {
-		margin-top: 20px;
-		margin-bottom: 20px;
-		border: 0;
-		border-top: 1px solid #e5e5e5;
-	}
-
-
-
-
-
-
-
-	img {
-		max-width: 89%;
-		// max-height: 20%;
-		display: flex;
-		margin-left:auto; 
-		margin-right:auto;
-		border-radius: 10rpx;
-		padding-top: 6rpx;
-	}
-
-	p {
-		margin: 0 0 8rpx;
-		text-indent: 2em;
-		font-family: 'Inter';
-		font-style: normal;
-		font-weight: 400;
-		font-size: 14px;
-		line-height: 17px;
-		color: #333333;
-	}
-
-	em {
-		font-style: italic;
-		font-weight: inherit;
-	}
-
-	ol,
-	ul {
-		margin-top: 0;
-		margin-bottom: 10px;
-		padding-left: 40px;
-	}
-
-	ol ol,
-	ol ul,
-	ul ol,
-	ul ul {
-		margin-bottom: 0;
-	}
-
-	ol ol,
-	ul ol {
-		list-style-type: lower-roman;
-	}
-
-	ol ol ol,
-	ul ul ol {
-		list-style-type: lower-alpha;
-	}
-
-	dl {
-		margin-top: 0;
-		margin-bottom: 20px;
-	}
-
-	dt {
-		font-weight: 600;
-	}
-
-	dt,
-	dd {
-		line-height: 1.4;
-	}
-
-	.task-list-item {
-		list-style-type: none;
-	}
-
-	.task-list-item input {
-		margin: 0 .2em .25em -1.6em;
-		vertical-align: middle;
-	}
-
-	pre {
-		position: relative;
-		z-index: 11;
-	}
-
-	code,
-	kbd,
-	pre,
-	samp {
-		font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-	}
-
-	code:not(.hljs) {
-		padding: 2px 4px;
-		font-size: 90%;
-		color: #c7254e;
-		background-color: #ffe7ee;
-		border-radius: 4px;
-	}
-
-	code:empty {
-		display: none;
-	}
-
-	pre code.hljs {
-		color: var(--vg__text-1);
-		border-radius: 16px;
-		background: var(--vg__bg-1);
-		font-size: 12px;
-	}
-
-	.markdown-wrap {
-		font-size: 12px;
-		margin-bottom: 10px;
-	}
-
-	pre.code-block-wrapper {
-		background: #2b2b2b;
-		color: #f8f8f2;
-		border-radius: 4px;
-		overflow-x: auto;
-		padding: 1em;
-		position: relative;
-	}
-
-	pre.code-block-wrapper code {
-		padding: auto;
-		font-size: inherit;
-		color: inherit;
-		background-color: inherit;
-		border-radius: 0;
-	}
-
-	.code-block-header__copy {
-		font-size: 16px;
-		margin-left: 5px;
-	}
-
-	abbr[data-original-title],
-	abbr[title] {
-		cursor: help;
-		border-bottom: 1px dotted #777;
-	}
-
-	blockquote {
-		padding: 10px 20px;
-		margin: 0 0 20px;
-		font-size: 17.5px;
-		border-left: 5px solid #e5e5e5;
-	}
-
-	blockquote ol:last-child,
-	blockquote p:last-child,
-	blockquote ul:last-child {
-		margin-bottom: 0
-	}
-
-	blockquote .small,
-	blockquote footer,
-	blockquote small {
-		display: block;
-		font-size: 80%;
-		line-height: 1.42857143;
-		color: #777
-	}
-
-	blockquote .small:before,
-	blockquote footer:before,
-	blockquote small:before {
-		content: '\2014 \00A0'
-	}
-
-	.blockquote-reverse,
-	blockquote.pull-right {
-		padding-right: 15px;
-		padding-left: 0;
-		text-align: right;
-		border-right: 5px solid #eee;
-		border-left: 0
-	}
-
-	.blockquote-reverse .small:before,
-	.blockquote-reverse footer:before,
-	.blockquote-reverse small:before,
-	blockquote.pull-right .small:before,
-	blockquote.pull-right footer:before,
-	blockquote.pull-right small:before {
-		content: ''
-	}
-
-	.blockquote-reverse .small:after,
-	.blockquote-reverse footer:after,
-	.blockquote-reverse small:after,
-	blockquote.pull-right .small:after,
-	blockquote.pull-right footer:after,
-	blockquote.pull-right small:after {
-		content: '\00A0 \2014'
-	}
-
-	.footnotes {
-		-moz-column-count: 2;
-		-webkit-column-count: 2;
-		column-count: 2
-	}
-
-	.footnotes-list {
-		padding-left: 2em
-	}
-
-	table,
-	::v-deep .table {
-		border-spacing: 0;
-		border-collapse: collapse;
-		width: 100%;
-		max-width: 65em;
-		overflow: auto;
-		margin-top: 0;
-		margin-bottom: 16px;
-	}
-
-	table tr,
-	::v-deep .table .tr {
-		border-top: 1px solid #e5e5e5;
-	}
-
-	table th,
-	table td,
-	::v-deep .table .th,
-	::v-deep .table .td {
-		padding: 6px 13px;
-		border: 1px solid #e5e5e5;
-	}
-
-	table th,
-	::v-deep .table .th {
-		font-weight: 600;
-		background-color: #eee;
-	}
-
-	.hljs[class*=language-]:before {
-		position: absolute;
-		z-index: 3;
-		top: .8em;
-		right: 1em;
-		font-size: .8em;
-		color: #999;
-	}
-
-	.hljs[class~=language-js]:before {
-		content: "js"
-	}
-
-	.hljs[class~=language-ts]:before {
-		content: "ts"
-	}
-
-	.hljs[class~=language-html]:before {
-		content: "html"
-	}
-
-	.hljs[class~=language-md]:before {
-		content: "md"
-	}
-
-	.hljs[class~=language-vue]:before {
-		content: "vue"
-	}
-
-	.hljs[class~=language-css]:before {
-		content: "css"
-	}
-
-	.hljs[class~=language-sass]:before {
-		content: "sass"
-	}
-
-	.hljs[class~=language-scss]:before {
-		content: "scss"
-	}
-
-	.hljs[class~=language-less]:before {
-		content: "less"
-	}
-
-	.hljs[class~=language-stylus]:before {
-		content: "stylus"
-	}
-
-	.hljs[class~=language-go]:before {
-		content: "go"
-	}
-
-	.hljs[class~=language-java]:before {
-		content: "java"
-	}
-
-	.hljs[class~=language-c]:before {
-		content: "c"
-	}
-
-	.hljs[class~=language-sh]:before {
-		content: "sh"
-	}
-
-	.hljs[class~=language-yaml]:before {
-		content: "yaml"
-	}
-
-	.hljs[class~=language-py]:before {
-		content: "py"
-	}
-
-	.hljs[class~=language-docker]:before {
-		content: "docker"
-	}
-
-	.hljs[class~=language-dockerfile]:before {
-		content: "dockerfile"
-	}
-
-	.hljs[class~=language-makefile]:before {
-		content: "makefile"
-	}
-
-	.hljs[class~=language-javascript]:before {
-		content: "js"
-	}
-
-	.hljs[class~=language-typescript]:before {
-		content: "ts"
-	}
-
-	.hljs[class~=language-markup]:before {
-		content: "html"
-	}
-
-	.hljs[class~=language-markdown]:before {
-		content: "md"
-	}
-
-	.hljs[class~=language-json]:before {
-		content: "json"
-	}
-
-	.hljs[class~=language-ruby]:before {
-		content: "rb"
-	}
-
-	.hljs[class~=language-python]:before {
-		content: "py"
-	}
-
-	.hljs[class~=language-bash]:before {
-		content: "sh"
-	}
-
-	.hljs[class~=language-php]:before {
-		content: "php"
-	}
 }
 </style>
