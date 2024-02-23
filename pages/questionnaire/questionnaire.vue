@@ -27,7 +27,7 @@ const data = reactive({
 	// 问卷类型
 	qetype: 0,
 	// 是否完成
-	finished: 0,
+	finished: 1,
 	// 提示文本
 	finishText: "您已经完成该问卷！",
 	// 答卷
@@ -53,7 +53,11 @@ const load = () =>{
 		// 如果问卷 只能填写一次 并且 已经完成 读取填写内容 设置遮罩层
 		if(data.qetype === 1) {
 			getUserPaper(data.qeid, data.user).then(res =>{
-				if(res.length == 0) return
+				if(res.length == 0) {
+					data.finished = 0
+					setLocalData("finished", 0)
+					return
+				}
 				setLocalData("finished", 1)
 				data.finished = 1 - data.finished
 				// 反序列化 
@@ -62,8 +66,6 @@ const load = () =>{
 				for(let i in data.question) {
 					data.question[i].answer = res[0].answer[i]
 				}
-				console.log(res, 'answer');
-				console.log(data.question, 'question');
 			}).catch(err =>{
 				// 加载失败
 				data.finishText = "加载失败，请稍后重试"
@@ -83,10 +85,17 @@ onBeforeMount(() =>{
 
 // 组合 用户答案
 const createAnswer = () =>{
-	// 题目答案 转 字符串数组
+	// 题目答案
 	for(let i in data.question) {
-		data.userPaper.push(data.question[i].answer)
+		// 表单 空 校验
+		if(typeof data.question[i].answer === undefined 
+			|| data.question[i].answer == null) {
+			return false
+		} else {				
+			data.userPaper.push(data.question[i].answer)
+		}
 	}
+	return true
 }
 
 // 提交
@@ -97,7 +106,14 @@ const submit = () =>{
 		content: '是否确认提交？',
 		success: (res) => {
 			if(res.confirm){
-				createAnswer()
+				if(!createAnswer()) {
+					uni.showToast({
+						title: '请检查作答！',
+						icon: 'loading',
+						duration: 1000
+					})
+					return
+				}
 				addUserPaper(data.qeid, data.userPaper, data.user).then(res =>{
 					uni.showToast({
 						title: '提交成功',
@@ -115,7 +131,7 @@ const submit = () =>{
 					// 增加失败
 					uni.showToast({
 						title: '请稍后重试',
-						icon: 'fail',
+						icon: 'loading',
 						duration: 2000
 					})
 					return
