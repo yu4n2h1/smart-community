@@ -9,7 +9,7 @@
 		<!-- 单选题 -->
 		<view class="item-option" v-if="question.type === 1">
 			<u-radio-group
-				v-model="data.sel[0]"
+				v-model="props.question.answer"
 			    placement="column"
 				@change="radioGroupChange"
 			  >
@@ -27,7 +27,7 @@
 		<!-- 多选题 -->
 		<view class="item-option" v-else-if="question.type === 2">
 			<u-checkbox-group
-				v-model="data.sel"
+				v-model="props.question.answer"
 			    placement="column"
 				@change="checkboxGroupChange"
 			  >
@@ -102,12 +102,7 @@
 	const checkboxGroupChange = (n) =>{
 		props.question.answer = n
 	}
-	
-	onUpdated(() =>{
-		if(getLocalData("finished") === 1) {
-			load()
-		}
-	})
+
 </script>
 
 <style>

@@ -45,6 +45,7 @@ const showDetail = (item) =>{
 const load = () =>{
 	// 清楚缓存
 	data.questionnaireList.splice(0)
+	data.finished.splice(0)
 	// 获取问卷数据
 	let user = getLocalData("user-token").id
 	getQuestionnaire().then(res =>{
