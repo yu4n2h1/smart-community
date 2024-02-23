@@ -54,18 +54,18 @@ const load = () =>{
 		if(data.qetype === 1) {
 			getUserPaper(data.qeid, data.user).then(res =>{
 				if(res.length == 0) {
-					data.finished = 0
+					data.finished = 1 - data.finished
 					setLocalData("finished", 0)
 					return
 				}
 				setLocalData("finished", 1)
-				data.finished = 1 - data.finished
 				// 反序列化 
 				res[0].answer = JSON.parse(res[0].answer)
 				// 填充答案
 				for(let i in data.question) {
 					data.question[i].answer = res[0].answer[i]
 				}
+				console.log(data.question);
 			}).catch(err =>{
 				// 加载失败
 				data.finishText = "加载失败，请稍后重试"
