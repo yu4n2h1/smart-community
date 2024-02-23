@@ -6,9 +6,7 @@
 <template>
 	<view class="header" :style="[{height: delmode?'100rpx':'0'}]">
 		
-		<!-- TODO全选 -->
-		<button class="header-btn">全选</button>
-		
+		<button class="header-btn" @click="selAll">全选</button>
 		<button class="header-btn" @click="delItem()">删除</button>
 		<button class="header-btn" @click="delmode = !delmode">取消</button>
 	</view>
@@ -127,6 +125,12 @@ const addItem = () =>{
 const selItem = (index) =>{
 	if(!delmode._value) showDetail(index)
 	else dellist[index] = !dellist[index]
+}
+
+const selAll = () =>{
+	for(let i in dellist) {
+		dellist[i] = true
+	}
 }
 
 const delItem = () =>{
