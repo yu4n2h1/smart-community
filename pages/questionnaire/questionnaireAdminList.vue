@@ -1,64 +1,53 @@
 <!-- 
 	问卷发布管理列表
- 
  -->
-
 <template>
-	<view class="header" :style="[{height: delmode?'100rpx':'0'}]">
-		
+	<view class="header" :style="[{height: data.delmode?'100rpx':'0'}]">
 		<button class="header-btn" @click="selAll">全选</button>
 		<button class="header-btn" @click="delItem()">删除</button>
-		<button class="header-btn" @click="delmode = !delmode">取消</button>
+		<button class="header-btn" @click="data.delmode = !data.delmode">取消</button>
 	</view>
 	<view class="W">
-		<!-- 列表空提示 -->
-		<view v-if="data.length === 0" class="item-null">当前没有问卷</view>
-		
-		<view class="item" v-for="(item, index) in data" :key="item.id" @click="selItem(index)">
-			
+		<view v-if="data.questionnaireList.length === 0" class="item-null">{{data.status}}</view>
+		<view class="item" v-for="(item, index) in data.questionnaireList" :key="item.id" @click="selItem(index)">
 			<view style="display: flex; justify-content: space-between;">				
 				<text>{{item.name}}</text>
-				
-				<!-- 选择框 -->
 				<view class="item-sel" 
-					:style="[{backgroundColor: dellist[index]?'#22cdee':'#fff', 
-							transform: delmode?'scale(1)':'scale(0)'}]">
+					:style="[{backgroundColor: data.dellist[index]?'#22cdee':'#fff', transform: data.delmode?'scale(1)':'scale(0)'}]">
 					√
 				</view>
 			</view>
-			
 			<view class="item-btm">
 				<view class="item-time">
 					<u-icon name="clock" style="padding: 7rpx 10rpx 0 0;" color="#98A1BB"></u-icon>
 					<text>截止到：</text>
 					<text>{{item.endTime}}</text>
 				</view>
-				<text style="color: green;">已填写：{{item.cnt}}份</text>	
+				<text style="color: green;">已填写：{{data.queCntList[index]?data.queCntList[index]:0}}份</text>	
 			</view>
 		</view>
 	</view>
-	
-	<!-- 右下角 按钮 -->
-	<view class="btn" @click="mored = !mored">
-		<view class="btn-icon" :style="[{transform: mored?'scale(0.8)':'scale(1)'}]">				
+	<!-- 右下角按钮 -->
+	<view class="btn" @click="data.mored = !data.mored">
+		<view class="btn-icon" :style="[{transform: data.mored?'scale(0.8)':'scale(1)'}]">				
 			<u-icon name="grid-fill" color="#fff" size="80rpx"></u-icon>
 		</view>
 		<view style="position: relative;">			
 			<view class="btn-icon-otr" 
-			:style="[{top: mored?'-20rpx':'-100rpx', 
-					left: mored?'-80rpx':'0rpx', 
-					transform: mored?'scale(0.8)':'scale(0)', 
-					backgroundColor: mored?'#768BFF':'transparent'
+			:style="[{top: data.mored?'-20rpx':'-100rpx', 
+					left: data.mored?'-80rpx':'0rpx', 
+					transform: data.mored?'scale(0.8)':'scale(0)', 
+					backgroundColor: data.mored?'#768BFF':'transparent'
 					}]">
 				<u-icon name="plus" color="#fff" size="60rpx" @click="addItem()"></u-icon>
 			</view>		
 			<view class="btn-icon-otr"
-			:style="[{top: mored?'-180rpx':'-100rpx', 
-					left: mored?'-80rpx':'0rpx', 
-					transform: mored?'scale(0.8)':'scale(0)', 
-					backgroundColor: mored?'#768BFF':'transparent'
+			:style="[{top: data.mored?'-180rpx':'-100rpx', 
+					left: data.mored?'-80rpx':'0rpx', 
+					transform: data.mored?'scale(0.8)':'scale(0)', 
+					backgroundColor: data.mored?'#768BFF':'transparent'
 					}]">
-				<u-icon name="minus" color="#fff" size="60rpx" @click="delmode = !delmode"></u-icon>
+				<u-icon name="minus" color="#fff" size="60rpx" @click="data.delmode = !data.delmode"></u-icon>
 			</view>
 		</view>
 	</view>	
@@ -68,30 +57,57 @@
 import {reactive, readonly, ref} from 'vue'
 import { delLocalData, getLocalData, setLocalData} from '../../utils/cache';
 import {onShow} from '@dcloudio/uni-app'
+import { getPaperCount, getQuestionnaire, getQUID } from '../../api/questionnaire';
 
-let data = reactive([])
-
-// 控制 按钮显示
-let mored = ref(false)
-
-// 控制 顶部菜单
-let delmode = ref(false)
-
-// 存储 需要删除的问卷
-let dellist = reactive([])
+let data = reactive({
+	questionnaireList: [],
+	// 按钮显示
+	mored: false,
+	// 顶部菜单
+	delmode: false,
+	// 待删除问卷
+	dellist: [],
+	// 问卷ID数组
+	qeidList: [],
+	// 问卷 填写数量
+	queCntList: [],
+	// 状态
+	status: "加载中...请稍后"
+})
 
 // 初始化
 const load = () =>{
 	// （页面切换时）清缓存 
-	data.splice(0, data.length)
-	
+	data.questionnaireList.splice(0)
+	data.qeidList.splice(0)
+	data.queCntList.splice(0)
 	// 查询 问卷
-	if(!getLocalData('questionnaire-list')) return
-	data.push(...getLocalData('questionnaire-list'))
-	
+	getQuestionnaire().then(res =>{
+		// 查询后 更改 空 状态信息
+		data.status = "当前没有问卷"
+		if(res.length === 0) return
+		for(let i in res) {
+			data.questionnaireList.push(res[i])
+			data.qeidList.push(data.questionnaireList[i].id)
+		}
+		// 查询填写数量 TODO 查询优化
+		getPaperCount(data.qeidList).then(res =>{
+			for(let i in data.qeidList) {
+				for(let j in res.data) {
+					if(res.data[j].questionnaire === data.qeidList[i]) {
+						data.queCntList.push(res.data[j].cnt)
+					}
+				}
+			}
+		})
+	}).catch(err =>{
+		// 获取 失败
+		return
+	})
+			
 	// 初始化删除数组
-	for(let i in data){
-		dellist.push(false)
+	for(let i in data.questionnaireList){
+		data.dellist.push(false)
 	}
 }
 
@@ -107,15 +123,10 @@ const showDetail = () =>{
 	})
 }
 
-// 创建新问卷
-const create = () =>{
-	uni.navigateTo({
-		url: '/pages/questionnaire/questionnaireAdmin'
-	})
-}
-
+// 新增问卷
 const addItem = () =>{
-	if(mored){
+	if(data.mored){
+		setLocalData("new-qeid", getQUID())
 		uni.navigateTo({
 			url: '/pages/questionnaire/questionnaireAdmin'
 		})
@@ -123,13 +134,13 @@ const addItem = () =>{
 }
 
 const selItem = (index) =>{
-	if(!delmode._value) showDetail(index)
-	else dellist[index] = !dellist[index]
+	if(!data.delmode) showDetail(index)
+	else data.dellist[index] = !data.dellist[index]
 }
 
 const selAll = () =>{
-	for(let i in dellist) {
-		dellist[i] = true
+	for(let i in data.dellist) {
+		data.dellist[i] = true
 	}
 }
 
@@ -139,29 +150,11 @@ const delItem = () =>{
 		content: '是否确认删除?',
 		success: res =>{
 			if(res.confirm){
-				let d = data.filter((item, index, arr) =>{
-					if(!dellist[index]) return item
+				uni.showToast({
+					title: '请稍后重试',
+					icon: 'loading',
+					duration: 2000,
 				})
-				data.splice(0, data.length)
-				data.push(...d)
-				try{
-					setLocalData('questionnaire-list', data)
-					uni.showToast({
-						title: '删除成功!',
-						icon: 'success',
-						duration: 2000,
-						success: res =>{
-
-						}
-					})
-				} catch(e){
-					console.log(e);
-					uni.showToast({
-						title: '请稍后重试',
-						icon: 'fail',
-						duration: 2000
-					})
-				}
 			} 
 		}
 	})

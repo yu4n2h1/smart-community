@@ -24,11 +24,11 @@
 						icon: '/static/img/question.png',
 						url: '/pages/questionnaire/questionnaireList'
 					},
-					// {
-					// 	name: '问卷管理',
-					// 	icon: '/static/img/question.png',
-					// 	url: '/pages/questionnaire/questionnaireAdminList'
-					// },
+					{
+						name: '问卷管理',
+						icon: '/static/img/question.png',
+						url: '/pages/questionnaire/questionnaireAdminList'
+					},
 					{
 						name: '居民诉求',
 						icon: '/static/img/like.png',
@@ -79,7 +79,7 @@
 		onLoad() {
 			if(!getLocalData('user-token')){				
 				setLocalData('user-token', {
-					id: 0,
+					id: "0",
 					username: 'admin',
 					password: '123'
 				})
