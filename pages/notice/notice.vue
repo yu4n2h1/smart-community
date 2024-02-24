@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<uni-section title="社区公告" sub-title="" type="line" style="width: 98%;margin: auto;">
+		<uni-section :title="tittle" sub-title="" type="line" style="width: 98%;margin: auto;">
 			<view class="notice-list">
 				<view class="notice-item" v-for="(item,index) in articles" :key="index" @click="todetail(item.articleId)">
 					<text style="text-align: center;">{{item.title}}</text>
@@ -17,16 +17,20 @@
 import { service } from "@/utils/request.js"
 // import { service } from "@/api/request.js"
 import { onBeforeMount, ref } from "vue";
+	import { onLoad, onShow } from "@dcloudio/uni-app";
 
 
 	const articles = ref([]);
-    async function fetchArticles() {
+	const tittle = ref();
+	
+    async function fetchArticles(option) {
       try {
-        const response = await service('/article/getList', 'GET');
-		console.log(response)
+        const response = await service('/article/getList', 'GET' ,option);
         if (Array.isArray(response.data)) {
 			articles.value = response.data;
-			console.log(articles.value);
+			if (response.data == null ) {
+				tittle = "页面不存在"
+			}
         } else {
           console.error('Invalid response format.');
         }
@@ -34,10 +38,14 @@ import { onBeforeMount, ref } from "vue";
         console.error('Error fetching articles:', error);
       }
     }
-
-    onBeforeMount(() => {
-      fetchArticles();
-    });
+    // onBeforeMount(() => {
+    //   fetchArticles();
+    // });
+	onLoad((option) => {
+		fetchArticles(option);
+		tittle.value = option.categoryType;
+	})
+	
 	
 	function todetail (articleId){
 		uni.navigateTo({

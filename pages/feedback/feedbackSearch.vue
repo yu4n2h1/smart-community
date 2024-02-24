@@ -1,31 +1,11 @@
-<!-- 
-	反馈内容列表
-	
-	TODO: 缓存机制
- -->
-
 <template>
 	<u-search placeholder="要查询的关键字" v-model="keyword" @search="search"></u-search>
 	<PostCard v-for="feedback in feedbackList" :key=feedback.id :feedback="feedback"></PostCard>
 	<u-loadmore :status="status" />
-	<view class="btn" @click="mored = !mored">
-		<view class="btn-icon" :style="[{transform: mored?'scale(0.8)':'scale(1)'}]">
-			<u-icon name="grid-fill" color="#fff" size="80rpx"></u-icon>
-		</view>
-		<view style="position: relative;">
-			<view class="btn-icon-otr" :style="[{top: mored?'-180rpx':'-100rpx', 
-					left: mored?'-80rpx':'0rpx', 
-					transform: mored?'scale(0.8)':'scale(0)', 
-					backgroundColor: mored?'#768BFF':'transparent'
-					}]">
-				<u-icon name="plus" color="#fff" size="60rpx" @click="addItem()"></u-icon>
-			</view>
-		</view>
-	</view>
 </template>
 
 <script>
-	import PostCard from "../../components/postCard.vue"
+import PostCard from "../../components/postCard.vue"
 	import config from "../../system.config.js"
 	import {
 		setLocalData
@@ -57,7 +37,8 @@
 		methods: {
 			getList() {
 				return new Promise((promise, reject) => {
-					getFeedback({
+					getFeedbackByKeyword({
+						wd: this.keyword,
 						current: this.page.current,
 						size: this.page.size
 					}).then(data => {
@@ -110,16 +91,11 @@
 			}
 
 		},
-		onLoad() {
-			this.load()
-		},
-		
-
-		onShow() {
-			uni.pageScrollTo({
-				scrollTop: 0,
-				duration: 0
-			})
+		onLoad(option) {
+			this.page.current = option.current
+			this.page.size = option.size
+			this.keyword = option.wd
+			
 			this.load()
 		},
 		onReachBottom() {
@@ -132,36 +108,6 @@
 	}
 </script>
 
-<style scoped>
-	.btn {
-		position: fixed;
-		top: 80%;
-		left: 80%;
-		width: 100rpx;
-		height: 100rpx;
-	}
+<style>
 
-	.btn-icon {
-		width: 100rpx;
-		height: 100rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #22cdee;
-		border-radius: 50%;
-		transition: 0.5s ease all;
-	}
-
-	.btn-icon-otr {
-		width: 100rpx;
-		height: 100rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #22cdee;
-		border-radius: 50%;
-		transition: 0.5s ease all;
-		position: absolute;
-		left: 0rpx;
-	}
 </style>

@@ -6,3 +6,4 @@ uni_modules/
 .vite/
 unpackage/
 pages/test/
+system.config.js
