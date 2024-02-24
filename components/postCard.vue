@@ -41,7 +41,7 @@
 
 		<!-- 正文 -->
 		<view class="middle">
-			<up-text class="title" :text="feedback.comment">
+			<up-text class="title" :text="feedback.comment" style="user-select: auto;">
 				{{feedback.comment}}
 			</up-text>
 			<view style="white-space: nowrap; overflow-x: auto;display: flex;">

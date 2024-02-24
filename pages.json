@@ -68,7 +68,7 @@
 		{
 			"path": "pages/feedback/feedbackCreate",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "意见反馈",
 				"enablePullDownRefresh": false
 			}
 		},
@@ -76,7 +76,7 @@
 			"path" : "pages/feedback/feedbackList",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "居民诉求",
 				"enablePullDownRefresh" : true
 			}
 		},
@@ -98,10 +98,10 @@
 			
 		},
 		{
-			"path" : "pages/feedback/feedbackDetail",
+			"path" : "pages/feedback/feedbackSearch",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "居民诉求",
 				"enablePullDownRefresh" : false
 			}
 		}

@@ -4,7 +4,7 @@
  -->
 
 <template>
-
+	
 	<u-form label-position="up" ref="form1" :model="feedback">
 		<u-form-item label="问题和意见" label-width="100" prop="comment" border-bottom ref="item1">
 			<u-textarea v-model="feedback.comment" placeholder="请输入内容" count></u-textarea>
