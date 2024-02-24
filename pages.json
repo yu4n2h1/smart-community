@@ -70,6 +70,46 @@
 				"navigationBarTitleText" : "",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/mine/mine",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我的",
+				"enablePullDownRefresh" : false
+			}
+		},
+		// {
+		// 	"path" : "pages/mine/topBlock",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "顶部块测试页面",
+		// 		"enablePullDownRefresh" : false
+		// 	}
+		// },
+		{
+			"path" : "pages/mine/test-demo",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/mine/loginPage",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/message/ownersCommittee",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {
@@ -92,13 +132,14 @@
 			{
 				"iconPath": "static/img/service3.png",
 				"selectedIconPath": "static/img/service3-select.png",
-				"pagePath": "pages/service/service",
+				// "pagePath": "pages/service/service",
+				"pagePath": "pages/mine/test-demo",
 				"text": "服务"
 			},
 			{
 				"iconPath": "static/img/me.png",
 				"selectedIconPath": "static/img/me-select.png",
-				"pagePath": "pages/test2/test2",
+				"pagePath": "pages/mine/mine",
 				"text": "我的"
 			}
 		]
