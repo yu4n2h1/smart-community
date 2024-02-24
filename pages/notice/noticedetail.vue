@@ -26,6 +26,15 @@
 	  try {
 	    const response = await service('/article/getContent?articleId=' + option.articleId, 'GET', option);
 	    article.value = response.data;
+		if (response.data == null){
+			article.value = {
+				"title": "页面不存在",
+				"publishDate": "",
+				"author": "",
+				"content": "来到了公告的荒原，请联系管理员或者访问小程序其他资源"
+			}
+			
+		}
 	  } catch (error) {
 	    console.error('Error fetching article:', error);
 	  }

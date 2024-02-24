@@ -15,13 +15,6 @@
 			}
 		},
 		{
-			"path": "pages/mine/mine",
-			"style": {
-				"navigationBarTitleText": "我的",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
 			"path": "pages/service/service",
 			"style": {
 				"navigationBarTitleText": "服务",
@@ -102,6 +95,46 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "居民诉求",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/mine/mine",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我的",
+				"enablePullDownRefresh" : false
+			}
+		},
+		// {
+		// 	"path" : "pages/mine/topBlock",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "顶部块测试页面",
+		// 		"enablePullDownRefresh" : false
+		// 	}
+		// },
+		{
+			"path" : "pages/mine/test-demo",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/mine/loginPage",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/message/ownersCommittee",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
 				"enablePullDownRefresh" : false
 			}
 		}
