@@ -1,5 +1,5 @@
 <template>
-	<uni-section title="社区公告" sub-title="" type="line">
+	<uni-section title="社区公告" sub-title="" type="line" style="width: 100%;">
 		<view class="notice-list">
 			<view class="notice-item" v-for="(item,index) in textArr" :key="index">
 				<text>{{item.title}}</text>
@@ -36,11 +36,11 @@
 
 <style>
 	.notice-list {
-		width: 100vw;
+		width: 100%
 	}
 
 	.notice-item {
-		width: calc(351rpx * 2);
+		width: 93.5%;
 		height: calc(101rpx * 2);
 		border: 1px solid #e2e2e2;
 		border-radius: calc(18rpx * 2);

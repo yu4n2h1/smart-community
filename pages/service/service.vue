@@ -1,5 +1,5 @@
 <template>
-	<view style="display: flex; flex-direction: column; background-color: #fafafa; height: 100vh;">
+	<view style="display: flex; flex-direction: column; background-color: #e6e6e6; height: 100vh;">
 		<!-- 用过 -->
 		<app-grid title="推荐应用" :appList="appList"></app-grid>
 		<!-- 推荐 -->
@@ -24,15 +24,15 @@
 						icon: '/static/img/question.png',
 						url: '/pages/questionnaire/questionnaireList'
 					},
+					// {
+					// 	name: '问卷管理',
+					// 	icon: '/static/img/question.png',
+					// 	url: '/pages/questionnaire/questionnaireAdminList'
+					// },
 					{
-						name: '问卷管理',
-						icon: '/static/img/question.png',
-						url: '/pages/questionnaire/questionnaireAdminList'
-					},
-					{
-						name: '',
+						name: '居民诉求',
 						icon: '/static/img/like.png',
-						url: '/pages/index/index'
+						url: '/pages/feedback/feedbackList'
 					},
 					{
 						name: '点',
@@ -69,6 +69,7 @@
 						icon: '/static/img/like.png',
 						url: '/pages/index/index'
 					},
+					
 				]
 			}
 		},

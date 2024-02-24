@@ -1,14 +1,22 @@
+<!-- 
+	问卷内容编辑页
+	
+ -->
+
 <template>
 	<view class="W">
 		<view class="header">
 			<input class="header-tit" type="text" placeholder="在此输入题目" v-model="data.name"/>
 			<view style="display: flex; flex-direction: row;">
 				<u-icon name="clock" style="padding: 7rpx 10rpx 0 0;" color="#98A1BB"></u-icon>
+				<!-- TODO时间选择器 -->
 				<input type="text" placeholder="截止时间" v-model="data.endTime"/>
 			</view>
 		</view>
 		<view v-for="(item, index) in data.questionList" :key="index">			
 			<editableQuestion :question="item">{{index + 1}}.</editableQuestion>
+			
+			<!-- 操作菜单 -->
 			<view class="item-bar">
 				<view style="display: flex; padding: 20rpx; border-top: 1px solid #22CDEE;">
 					<u-icon name="arrow-upward" color="#22CDEE" style="padding-right: 10rpx;" @click="upItem(index)"></u-icon>
@@ -24,7 +32,7 @@
 </template>
 
 <script setup>
-import editableQuestion from '../../components/editableQuestion.vue'
+import editableQuestion from '../../components/questionnaire/editableQuestion.vue'
 import {onBeforeMount, reactive} from 'vue'
 import {delLocalData, getLocalData, setLocalData} from '../../utils/cache.js'
 
@@ -37,6 +45,8 @@ const data = reactive({
 	]
 })
 
+// 返回 函数值 实现 深拷贝
+// 返回一个 默认问卷
 const getDefaultItem = () =>{
 	let dm = {
 		flag: 0,

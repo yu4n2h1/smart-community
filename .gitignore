@@ -2,3 +2,8 @@
 node_modules/
 .DS_Store
 uni_modules/
+.hbuilderx/
+.vite/
+unpackage/
+pages/test/
+system.config.js

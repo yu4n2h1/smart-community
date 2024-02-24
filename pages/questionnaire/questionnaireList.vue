@@ -1,7 +1,10 @@
+<!-- 
+	用户问卷列表
+ -->
 <template>
 	<view class="W">
-		<view v-if="data.length === 0" class="item-null">当前没有问卷</view>
-		<view class="item" v-for="(item, index) in data" :key="item.id" @click="toQuestionnaire(item.id)">
+		<view v-if="data.questionnaireList.length === 0" class="item-null">当前没有问卷</view>
+		<view class="item" v-for="(item, index) in data.questionnaireList" :key="item.id" @click="showDetail(item)">
 			<text>{{item.name}}</text>
 			<view class="item-btm">
 				<view class="item-time">
@@ -9,32 +12,59 @@
 					<text>截止到：</text>
 					<text>{{item.endTime}}</text>
 				</view>
-				<text :style="[{color : item.flag?'green':'red'}]">{{item.flag?'已完成':'未完成'}}</text>	
+				<text :style="[{color : data.finished[index]?'green':'red'}]">{{data.finished[index]?"已完成":"未完成"}}</text>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script setup>
-import {onBeforeMount, reactive} from 'vue'
-import {getLocalData, setLocalData} from '../../utils/cache.js'
+import { onReachBottom, onShow } from "@dcloudio/uni-app"
+import { reactive } from "vue";
+import { getQuestionnaire, getUserPaper } from "../../api/questionnaire.js"
+import { setLocalData, getLocalData } from "../../utils/cache.js";
 
-let data = reactive([])
+const data = reactive({
+	questionnaireList: [],
+	// 用户 是否完成
+	finished: []
+})
 
-const toQuestionnaire = (id) =>{
-	setLocalData('questionnaire-id', id)
+// 显示 问卷内容
+const showDetail = (item) =>{
+	// 缓存 当前问卷
+	setLocalData("qeid", item.id)
+	setLocalData("qetype", item.type)
+	setLocalData("qidList", item.questionList)
 	uni.navigateTo({
-		url: '/pages/questionnaire/questionnaire'
+		url: "/pages/questionnaire/questionnaire"
 	})
 }
 
+// 初始化
 const load = () =>{
-	data.splice(0, data.length)
-	if(!getLocalData('questionnaire-list')) return
-	data.push(...getLocalData('questionnaire-list'))
+	// 清楚缓存
+	data.questionnaireList.splice(0)
+	data.finished.splice(0)
+	// 获取问卷数据
+	let user = getLocalData("user-token").id
+	getQuestionnaire().then(res =>{
+		data.questionnaireList.push(...res)
+		// 检索是否完成 TODO 查询优化
+		for(let i in data.questionnaireList) {
+			getUserPaper(data.questionnaireList[i].id, user).then(res =>{
+				if(res.length == 0) data.finished.push(0)
+				else data.finished.push(1)
+			})
+		}
+	}).catch(err =>{
+		// 获取 失败
+		return
+	})
+
 }
 
-onBeforeMount(() =>{
+onShow(() =>{
 	load()
 })
 </script>
@@ -53,7 +83,7 @@ onBeforeMount(() =>{
 	}
 	.item text:nth-child(1){
 		border-left: 2px solid #768BFF;
-		padding-left: 5rpx;
+		padding-left: 10rpx;
 		line-height: 40rpx;
 		margin-bottom: 50rpx;
 		font-size: 1.1rem;
