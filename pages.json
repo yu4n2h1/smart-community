@@ -15,13 +15,6 @@
 			}
 		},
 		{
-			"path": "pages/mine/mine",
-			"style": {
-				"navigationBarTitleText": "我的",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
 			"path": "pages/service/service",
 			"style": {
 				"navigationBarTitleText": "服务",
@@ -165,8 +158,7 @@
 			{
 				"iconPath": "static/img/service3.png",
 				"selectedIconPath": "static/img/service3-select.png",
-				// "pagePath": "pages/service/service",
-				"pagePath": "pages/mine/test-demo",
+				"pagePath": "pages/service/service",
 				"text": "服务"
 			},
 			{
