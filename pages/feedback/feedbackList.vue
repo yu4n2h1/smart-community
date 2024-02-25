@@ -5,7 +5,7 @@
  -->
 
 <template>
-	<u-search placeholder="要查询的关键字" v-model="keyword" @search="search"></u-search>
+	<u-search placeholder="要查询的关键字" v-model="keyword" @search="search" :show-action="false"></u-search>
 	<PostCard v-for="feedback in feedbackList" :key=feedback.id :feedback="feedback" @searchTag="searchTag"></PostCard>
 	<u-loadmore :status="status" />
 	<view class="btn" @click="mored = !mored">
@@ -117,10 +117,6 @@
 			}
 
 		},
-		onLoad() {
-			this.load()
-		},
-
 
 		onShow() {
 			uni.pageScrollTo({

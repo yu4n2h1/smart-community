@@ -5,17 +5,16 @@
 
 <template>
 
-	<u-form label-position="up" ref="form1" :model="feedback">
-		<u-form-item label="问题和意见" label-width="100" prop="comment" border-bottom ref="item1">
+	<u--form label-position="up" ref="form1" :model="feedback">
+		<u-form-item  label="问题和意见" label-width="100" prop="comment" border-bottom ref="item1" :required="true">  
 			<u-textarea v-model="feedback.comment" placeholder="请输入内容" count></u-textarea>
 		</u-form-item>
-		<u-text>上传</u-text>
-		<u-upload :fileList="fileList1" @afterRead="afterRead" @delete="deletePic" name="1" multiple
+		<u-upload label="图片上传" :fileList="fileList1" @afterRead="afterRead" @delete="deletePic" name="1" multiple
 			:maxCount="6"></u-upload>
 		<u-form-item label="联系方式(可选)" label-width="130" prop="phone" border-bottom ref="item1">
 			<u-input v-model="feedback.phone" border="surround"></u-input>
 		</u-form-item>
-	</u-form>
+	</u--form>
 
 	<optionalTag @update:modelValue="handle"></optionalTag>
 	<u-button type="primary" text="提交" customStyle="margin-top: 20px" class="btn" @click="submit"></u-button>
@@ -72,8 +71,8 @@
 					pictures: feedback.pictures
 				},
 				header: {
-					'Content-Type': 'application/json;charset=UTF-8'
-				},
+							'Content-Type': 'application/json;charset=UTF-8'
+						},
 				method: "POST",
 				success: (res) => {
 					if (res.data == true) {
