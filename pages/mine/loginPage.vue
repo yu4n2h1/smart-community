@@ -1,6 +1,6 @@
 <template>
   <view class="background-container">
-    <image src="@/static/img/login.png" class="background-image"></image>
+    <image src="https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/login.jpg" class="background-image"></image>
 	
 	<view style="margin-top: 60vh;">
 		<button @click="show = true" class="overlay-button" style="background-color: blue;">业主登录</button>
