@@ -1,11 +1,11 @@
 <template>
 	<u-search placeholder="要查询的关键字" v-model="keyword" @search="search"></u-search>
-	<PostCard v-for="feedback in feedbackList" :key=feedback.id :feedback="feedback"></PostCard>
+	<PostCard v-for="feedback in feedbackList" :key=feedback.id :feedback="feedback" @searchTag="searchTag"></PostCard>
 	<u-loadmore :status="status" />
 </template>
 
 <script>
-import PostCard from "../../components/postCard.vue"
+	import PostCard from "../../components/postCard.vue"
 	import config from "../../system.config.js"
 	import {
 		setLocalData
@@ -23,7 +23,10 @@ import PostCard from "../../components/postCard.vue"
 				feedbackList: [],
 				//当前u-loadmore状态
 				status: 'loadmore',
+				//查询状态
+				column: "",
 				//分页
+
 				page: {
 					current: 1,
 					size: 5
@@ -38,7 +41,8 @@ import PostCard from "../../components/postCard.vue"
 			getList() {
 				return new Promise((promise, reject) => {
 					getFeedbackByKeyword({
-						wd: this.keyword,
+						column: this.column,
+						value: this.keyword,
 						current: this.page.current,
 						size: this.page.size
 					}).then(data => {
@@ -77,7 +81,15 @@ import PostCard from "../../components/postCard.vue"
 			//搜索
 			search(keyword) {
 				uni.navigateTo({
-					url: `/pages/feedback/feedbackSearch?wd=${keyword}&current=1&size=${this.page.size}`
+					url: `/pages/feedback/feedbackSearch?column=keyword&value=${keyword}&current=1&size=${this.page.size}`
+				})
+			},
+			searchTag(keyword) {
+				if (this.column == "tag") {
+					return;
+				}
+				uni.navigateTo({
+					url: `/pages/feedback/feedbackSearch?column=tag&value=${keyword}&current=1&size=${this.page.size}`
 				})
 			},
 			//加载逻辑，缓存机制待完成
@@ -94,8 +106,8 @@ import PostCard from "../../components/postCard.vue"
 		onLoad(option) {
 			this.page.current = option.current
 			this.page.size = option.size
-			this.keyword = option.wd
-			
+			this.keyword = option.value
+			this.column = option.column
 			this.load()
 		},
 		onReachBottom() {

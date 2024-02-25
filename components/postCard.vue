@@ -57,7 +57,7 @@
 
 		<!-- 下方 标签 交互 等 -->
 		<view class="bottem">
-			<view class="tag" :style="tagColors[0]">
+			<view class="tag" :style="tagColors[0]" @click="searchTag">
 				#{{feedback.tag}}
 			</view>
 			<view class="action">
@@ -86,7 +86,7 @@
 		computed,
 		reactive
 	} from 'vue';
-
+	let emit = defineEmits()
 	const props = defineProps({
 		// 反馈
 		feedback: {
@@ -108,6 +108,9 @@
 			default: {}
 		}
 	})
+	const searchTag = () => {
+		emit("searchTag", props.feedback.tag)
+	}
 	// 用户信息
 	const user = reactive({
 		id: '',

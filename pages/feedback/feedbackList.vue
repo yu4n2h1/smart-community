@@ -6,7 +6,7 @@
 
 <template>
 	<u-search placeholder="要查询的关键字" v-model="keyword" @search="search"></u-search>
-	<PostCard v-for="feedback in feedbackList" :key=feedback.id :feedback="feedback"></PostCard>
+	<PostCard v-for="feedback in feedbackList" :key=feedback.id :feedback="feedback" @searchTag="searchTag"></PostCard>
 	<u-loadmore :status="status" />
 	<view class="btn" @click="mored = !mored">
 		<view class="btn-icon" :style="[{transform: mored?'scale(0.8)':'scale(1)'}]">
@@ -96,7 +96,14 @@
 			//搜索
 			search(keyword) {
 				uni.navigateTo({
-					url: `/pages/feedback/feedbackSearch?wd=${keyword}&current=1&size=${this.page.size}`
+					url: `/pages/feedback/feedbackSearch?column=keyword&value=${keyword}&current=1&size=${this.page.size}`
+				})
+			},
+			//按照Tag搜索
+			searchTag(keyword) {
+				console.log(keyword)
+				uni.navigateTo({
+					url: `/pages/feedback/feedbackSearch?column=tag&value=${keyword}&current=1&size=${this.page.size}`
 				})
 			},
 			//加载逻辑，缓存机制待完成
@@ -113,7 +120,7 @@
 		onLoad() {
 			this.load()
 		},
-		
+
 
 		onShow() {
 			uni.pageScrollTo({
