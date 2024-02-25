@@ -8,18 +8,9 @@
 	<u-search placeholder="要查询的关键字" v-model="keyword" @search="search" :show-action="false"></u-search>
 	<PostCard v-for="feedback in feedbackList" :key=feedback.id :feedback="feedback" @searchTag="searchTag"></PostCard>
 	<u-loadmore :status="status" />
-	<view class="btn" @click="mored = !mored">
-		<view class="btn-icon" :style="[{transform: mored?'scale(0.8)':'scale(1)'}]">
-			<u-icon name="grid-fill" color="#fff" size="80rpx"></u-icon>
-		</view>
-		<view style="position: relative;">
-			<view class="btn-icon-otr" :style="[{top: mored?'-180rpx':'-100rpx', 
-					left: mored?'-80rpx':'0rpx', 
-					transform: mored?'scale(0.8)':'scale(0)', 
-					backgroundColor: mored?'#768BFF':'transparent'
-					}]">
-				<u-icon name="plus" color="#fff" size="60rpx" @click="addItem()"></u-icon>
-			</view>
+	<view class="btn">
+		<view class="btn-icon">
+			<u-icon name="plus" color="#fff" size="70rpx"  @click="addItem()"></u-icon>
 		</view>
 	</view>
 </template>
@@ -47,8 +38,7 @@
 				page: {
 					current: 1,
 					size: 5
-				},
-				mored: false
+				}
 			}
 		},
 		components: {
@@ -72,11 +62,11 @@
 				})
 			},
 			addItem() {
-				if (this.mored) {
+				
 					uni.navigateTo({
 						url: '/pages/feedback/feedbackCreate'
 					})
-				}
+					
 			},
 			//处理feedback
 			handleFeedback(feedbackList) {
