@@ -66,7 +66,6 @@ const load = () =>{
 				for(let i in data.question) {
 					data.question[i].answer = res[0].answer[i]
 				}
-				console.log(data);
 			}).catch(err =>{
 				// 加载失败
 				data.status = "加载失败，请稍后重试"

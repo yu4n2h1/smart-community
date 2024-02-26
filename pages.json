@@ -143,7 +143,23 @@
 				"navigationBarTitleText" : "",
 				"enablePullDownRefresh" : false
 			}
-		}
+		},
+		{
+			"path" : "pages/populationReport/populationReport",
+			"style" : 
+			{
+				"navigationBarTitleText" : "报备填写",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/populationReport/populationReportList",
+			"style" : 
+			{
+				"navigationBarTitleText" : "人口报备",
+				"enablePullDownRefresh" : false
+			}
+		},
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

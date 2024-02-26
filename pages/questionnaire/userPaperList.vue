@@ -56,7 +56,6 @@ const load = () =>{
 			return
 		}
 		data.userPaperList.push(...res.data)
-		console.log(data.userPaperList);
 	}).catch(err =>{
 		// 加载失败
 		console.log(err);
