@@ -2,7 +2,7 @@
 	<!-- 顶部栏 -->
 	<view style="display: flex; flex-direction: row; align-items: center; margin-bottom: 10px;" class="top-block">
 			<!-- <image :class="avatarUrl ==''?'avatar-img':'' " :src="avatarUrl"></image> -->
-			 <image class="avatar-img" :src="avatarUrl" @click="previewImage"></image>
+			 <image class="avatar-img" :src="avatarUrl ? avatarUrl : 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'" @click="previewImage"></image>
 			<text @click="navigateToLoginPage" style="color: white; margin-left: 5%;">微信登陆</text>
 			<!-- <text>{{nickname}}1111111</text> -->
 			<!-- <button class="avatar-button" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">微信登陆</button> -->
