@@ -310,7 +310,7 @@
 		width: 80rpx;
 		height: 80rpx;
 		border-radius: 50%;
-		background-image: url('../../static/img/me.png');
+		background-image: url('https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0');
 		background-size: cover;
 	}
 	.pop-block-bottom-button{
