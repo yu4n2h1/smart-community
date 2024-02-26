@@ -29,7 +29,7 @@
 		},
 		{
 			"path": "/pages/test/test",
-			"text": "政务发布",
+			"text": "居民诉求",
 			"imgSrc":  "/static/img/homeBar/Residents_demands.png",
 		},
 		{

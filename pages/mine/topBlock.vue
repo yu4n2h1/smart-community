@@ -29,7 +29,7 @@
 	  nickname.value = uni.getStorageSync('nickname');
 	  console.log(nickname.value);
 	  const avatarByte = uni.getStorageSync('avatar');
-	  avatarUrl.value = saveBlobAsTempFile(avatarByte);
+	  // avatarUrl.value = saveBlobAsTempFile(avatarByte);
 
 		// 调用图片预览函数
 		// previewImage();
