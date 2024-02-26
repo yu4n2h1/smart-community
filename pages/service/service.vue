@@ -56,7 +56,7 @@
 					{
 						name: '小区信息',
 						icon: '/static/img/like.png',
-						url: '/pages/index/index'
+						url: '/pages/displaymes/displaymes?communityname=山东科技大学'
 					},
 					{
 						name: '物业公司',
@@ -71,7 +71,7 @@
 					{
 						name: '业主委员会公告',
 						icon: '/static/img/like.png',
-						url: '/pages/index/index'
+						url: '/pages/notice/notice?categoryType=业主委员会公告'
 					},
 					{
 						name: '业主诉求',
