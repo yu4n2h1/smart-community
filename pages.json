@@ -51,13 +51,19 @@
 			}
 		},
 		{
-			"path": "pages/questionnaire/questionnaireDetail",
+			"path": "pages/questionnaire/userPaperList",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
 		},
-		
+		{
+			"path": "pages/questionnaire/userPaper",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
 		{
 			"path": "pages/feedback/feedbackCreate",
 			"style": {

@@ -25,6 +25,14 @@ export function addQuestionnaire(questionnaire) {
 	return service("/questionnaire/add", "POST", data)
 }
 
+// 删除问卷
+export function delQuestionnaire(id) {
+	let data = {
+		id,
+	}
+	return serviceWithParam("/questionnaire/deleteById", "POST", data)
+}
+
 // 查询问题
 export function getQuestion(question) {
 	let data = {
@@ -50,6 +58,14 @@ export function getUserPaper(questionnaire, user) {
 		user
 	}
 	return serviceWithParam("/userPaper/selectByQuestionnaire", "POST", data)
+}
+
+// 查询该问卷的所有答卷
+export function getPaperList(questionnaire) {
+	let data = {
+		questionnaire,
+	}
+	return serviceWithParam("/userPaper/relevantPaper", "POST", data)
 }
 
 // 查询问卷填写数量
