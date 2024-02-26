@@ -2,7 +2,7 @@
 	用户问卷内容
  -->
 <template>
-	<view v-if="data.finished === 1" style="text-align: center; color: #98A1BB; padding-top: 30rpx;">{{data.finishText}}</view>
+	<view v-if="data.finished === 1" style="text-align: center; color: #98A1BB; padding-top: 30rpx;">{{data.status}}</view>
 	<view class="W" v-for="(item, index) in data.question" :key="index">	
 		<question :question="item">{{index + 1}}.</question>
 	</view>
@@ -28,8 +28,8 @@ const data = reactive({
 	qetype: 0,
 	// 是否完成
 	finished: 1,
-	// 提示文本
-	finishText: "您已经完成该问卷！",
+	// 状态信息
+	status: "加载中...请稍后",
 	// 答卷
 	userPaper: []
 })
@@ -53,6 +53,8 @@ const load = () =>{
 		// 如果问卷 只能填写一次 并且 已经完成 读取填写内容 设置遮罩层
 		if(data.qetype === 1) {
 			getUserPaper(data.qeid, data.user).then(res =>{
+				// 查询后 更改 空 状态信息
+				data.status = "您已经完成该问卷！"
 				if(res.length == 0) {
 					data.finished = 1 - data.finished
 					setLocalData("finished", 0)
@@ -65,10 +67,9 @@ const load = () =>{
 				for(let i in data.question) {
 					data.question[i].answer = res[0].answer[i]
 				}
-				console.log(data.question);
 			}).catch(err =>{
 				// 加载失败
-				data.finishText = "加载失败，请稍后重试"
+				data.status = "加载失败，请稍后重试"
 				return
 			})
 		}

@@ -5,17 +5,16 @@
 
 <template>
 
-	<u-form label-position="up" ref="form1" :model="feedback">
-		<u-form-item label="问题和意见" label-width="100" prop="comment" border-bottom ref="item1">
+	<u--form label-position="up" ref="form1" :model="feedback">
+		<u-form-item  label="问题和意见" label-width="100" prop="comment" border-bottom ref="item1" :required="true">  
 			<u-textarea v-model="feedback.comment" placeholder="请输入内容" count></u-textarea>
 		</u-form-item>
-		<u-text>上传</u-text>
-		<u-upload :fileList="fileList1" @afterRead="afterRead" @delete="deletePic" name="1" multiple
+		<u-upload label="图片上传" :fileList="fileList1" @afterRead="afterRead" @delete="deletePic" name="1" multiple
 			:maxCount="6"></u-upload>
 		<u-form-item label="联系方式(可选)" label-width="130" prop="phone" border-bottom ref="item1">
 			<u-input v-model="feedback.phone" border="surround"></u-input>
 		</u-form-item>
-	</u-form>
+	</u--form>
 
 	<optionalTag @update:modelValue="handle"></optionalTag>
 	<u-button type="primary" text="提交" customStyle="margin-top: 20px" class="btn" @click="submit"></u-button>
@@ -61,7 +60,7 @@
 
 	function submit() {
 		form1.value.validate().then(res => {
-			
+
 			uni.request({
 				url: config.developUrl + "/feedback/save",
 				data: {
@@ -72,8 +71,8 @@
 					pictures: feedback.pictures
 				},
 				header: {
-					'Content-Type': 'application/json;charset=UTF-8'
-				},
+							'Content-Type': 'application/json;charset=UTF-8'
+						},
 				method: "POST",
 				success: (res) => {
 					if (res.data == true) {
@@ -113,54 +112,54 @@
 		feedback.tag = value;
 	}
 	const fileList1 = ref([]);
-	
+
 	// 删除图片
 	const deletePic = (event) => {
-	  fileList1.value.splice(event.index, 1);
-	  feedback.pictures.splice(event.index, 1);
+		fileList1.value.splice(event.index, 1);
+		feedback.pictures.splice(event.index, 1);
 	};
-	
+
 	// 新增图片
 	const afterRead = async (event) => {
-	  // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-	  let lists = [].concat(event.file);
-	  let fileListLen = fileList1.value.length;
-	  lists.map((item) => {
-	    fileList1.value.push({
-	      ...item,
-	      status: 'uploading',
-	      message: '上传中',
-	    });
-	  });
-	  for (let i = 0; i < lists.length; i++) {
-	    const result = await uploadFilePromise(lists[i].url);
-	    let item = fileList1.value[fileListLen];
-	    fileList1.value.splice(fileListLen, 1, {
-	      ...item,
-	      status: 'success',
-	      message: '',
-	      url: result,
-	    });
-	    fileListLen++;
-	  }
+		// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
+		let lists = [].concat(event.file);
+		let fileListLen = fileList1.value.length;
+		lists.map((item) => {
+			fileList1.value.push({
+				...item,
+				status: 'uploading',
+				message: '上传中',
+			});
+		});
+		for (let i = 0; i < lists.length; i++) {
+			const result = await uploadFilePromise(lists[i].url);
+			let item = fileList1.value[fileListLen];
+			fileList1.value.splice(fileListLen, 1, {
+				...item,
+				status: 'success',
+				message: '',
+				url: result,
+			});
+			fileListLen++;
+		}
 	};
-	
+
 	const uploadFilePromise = (url) => {
-	  return new Promise((resolve, reject) => {
-	    let a = uni.uploadFile({
-	      url: config.developUrl + "/feedback/uploadPic", // 接口地址
-	      filePath: url,
-	      name: 'file',
-	      success: (res) => {
-			const pictures = JSON.parse(res.data)
-			const picUrl = config.fileUrl + "/feedback/img/" + pictures.uuidName
-			feedback.pictures.push(res.data)
-	        setTimeout(() => {
-	          resolve(picUrl);
-	        }, 1000);
-	      },
-	    });
-	  });
+		return new Promise((resolve, reject) => {
+			let a = uni.uploadFile({
+				url: config.developUrl + "/feedback/uploadPic", // 接口地址
+				filePath: url,
+				name: 'file',
+				success: (res) => {
+					const pictures = JSON.parse(res.data)
+					const picUrl = config.fileUrl + "/feedback/img/" + pictures.uuidName
+					feedback.pictures.push(res.data)
+					setTimeout(() => {
+						resolve(picUrl);
+					}, 1000);
+				},
+			});
+		});
 	};
 </script>
 

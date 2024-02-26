@@ -1,18 +1,7 @@
-<!-- 
-	反馈内容列表
-	
-	TODO: 缓存机制
- -->
-
 <template>
-	<u-search placeholder="要查询的关键字" v-model="keyword" @search="search" :show-action="false"></u-search>
+	<u-search placeholder="要查询的关键字" v-model="keyword" @search="search"></u-search>
 	<PostCard v-for="feedback in feedbackList" :key=feedback.id :feedback="feedback" @searchTag="searchTag"></PostCard>
 	<u-loadmore :status="status" />
-	<view class="btn">
-		<view class="btn-icon">
-			<u-icon name="plus" color="#fff" size="70rpx"  @click="addItem()"></u-icon>
-		</view>
-	</view>
 </template>
 
 <script>
@@ -34,11 +23,15 @@
 				feedbackList: [],
 				//当前u-loadmore状态
 				status: 'loadmore',
+				//查询状态
+				column: "",
 				//分页
+
 				page: {
 					current: 1,
 					size: 5
-				}
+				},
+				mored: false
 			}
 		},
 		components: {
@@ -47,7 +40,9 @@
 		methods: {
 			getList() {
 				return new Promise((promise, reject) => {
-					getFeedback({
+					getFeedbackByKeyword({
+						column: this.column,
+						value: this.keyword,
 						current: this.page.current,
 						size: this.page.size
 					}).then(data => {
@@ -62,11 +57,11 @@
 				})
 			},
 			addItem() {
-				
+				if (this.mored) {
 					uni.navigateTo({
 						url: '/pages/feedback/feedbackCreate'
 					})
-					
+				}
 			},
 			//处理feedback
 			handleFeedback(feedbackList) {
@@ -89,9 +84,10 @@
 					url: `/pages/feedback/feedbackSearch?column=keyword&value=${keyword}&current=1&size=${this.page.size}`
 				})
 			},
-			//按照Tag搜索
 			searchTag(keyword) {
-				console.log(keyword)
+				if (this.column == "tag") {
+					return;
+				}
 				uni.navigateTo({
 					url: `/pages/feedback/feedbackSearch?column=tag&value=${keyword}&current=1&size=${this.page.size}`
 				})
@@ -107,12 +103,11 @@
 			}
 
 		},
-
-		onShow() {
-			uni.pageScrollTo({
-				scrollTop: 0,
-				duration: 0
-			})
+		onLoad(option) {
+			this.page.current = option.current
+			this.page.size = option.size
+			this.keyword = option.value
+			this.column = option.column
 			this.load()
 		},
 		onReachBottom() {
@@ -125,36 +120,6 @@
 	}
 </script>
 
-<style scoped>
-	.btn {
-		position: fixed;
-		top: 80%;
-		left: 80%;
-		width: 100rpx;
-		height: 100rpx;
-	}
+<style>
 
-	.btn-icon {
-		width: 100rpx;
-		height: 100rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #22cdee;
-		border-radius: 50%;
-		transition: 0.5s ease all;
-	}
-
-	.btn-icon-otr {
-		width: 100rpx;
-		height: 100rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #22cdee;
-		border-radius: 50%;
-		transition: 0.5s ease all;
-		position: absolute;
-		left: 0rpx;
-	}
 </style>

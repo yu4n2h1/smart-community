@@ -3,7 +3,7 @@
  -->
 <template>
 	<view class="W">
-		<view v-if="data.questionnaireList.length === 0" class="item-null">当前没有问卷</view>
+		<view v-if="data.questionnaireList.length === 0" class="item-null">{{data.status}}</view>
 		<view class="item" v-for="(item, index) in data.questionnaireList" :key="item.id" @click="showDetail(item)">
 			<text>{{item.name}}</text>
 			<view class="item-btm">
@@ -12,7 +12,7 @@
 					<text>截止到：</text>
 					<text>{{item.endTime}}</text>
 				</view>
-				<text :style="[{color : data.finished[index]?'green':'red'}]">{{data.finished[index]?"已完成":"未完成"}}</text>
+				<text :style="[{color : data.finished[item.id]?'green':'red'}]">{{data.finished[item.id]?"已完成":"未完成"}}</text>
 			</view>
 		</view>
 	</view>
@@ -27,7 +27,9 @@ import { setLocalData, getLocalData } from "../../utils/cache.js";
 const data = reactive({
 	questionnaireList: [],
 	// 用户 是否完成
-	finished: []
+	finished: {},
+	// 状态信息
+	status: "加载中...请稍后"
 })
 
 // 显示 问卷内容
@@ -45,16 +47,18 @@ const showDetail = (item) =>{
 const load = () =>{
 	// 清楚缓存
 	data.questionnaireList.splice(0)
-	data.finished.splice(0)
+	data.finished = {}
 	// 获取问卷数据
 	let user = getLocalData("user-token").id
 	getQuestionnaire().then(res =>{
+		data.status = "当前没有问卷"
+		if(res.length === 0) return
 		data.questionnaireList.push(...res)
 		// 检索是否完成 TODO 查询优化
 		for(let i in data.questionnaireList) {
 			getUserPaper(data.questionnaireList[i].id, user).then(res =>{
-				if(res.length == 0) data.finished.push(0)
-				else data.finished.push(1)
+				if(res.length == 0) data.finished[data.questionnaireList[i].id] = 0
+				else data.finished[data.questionnaireList[i].id] = 1
 			})
 		}
 	}).catch(err =>{
