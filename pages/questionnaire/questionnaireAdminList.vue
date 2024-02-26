@@ -3,7 +3,7 @@
  -->
 <template>
 	<view class="header" :style="[{height: data.delmode?'100rpx':'0'}]">
-		<button class="header-btn" @click="selAll">全选</button>
+		<button class="header-btn" @click="selAll">{{data.selAlled?"全不选":"全选"}}</button>
 		<button class="header-btn" @click="delItem()">删除</button>
 		<button class="header-btn" @click="data.delmode = !data.delmode">取消</button>
 	</view>
@@ -57,7 +57,7 @@
 import {reactive, readonly, ref} from 'vue'
 import { delLocalData, getLocalData, setLocalData} from '../../utils/cache';
 import {onShow} from '@dcloudio/uni-app'
-import { getPaperCount, getQuestionnaire, getQUID } from '../../api/questionnaire';
+import { delQuestionnaire, getPaperCount, getQuestionnaire, getQUID } from '../../api/questionnaire';
 
 let data = reactive({
 	questionnaireList: [],
@@ -67,6 +67,8 @@ let data = reactive({
 	delmode: false,
 	// 待删除问卷
 	dellist: [],
+	// 是否全选
+	selAlled: false,
 	// 问卷ID数组
 	qeidList: [],
 	// 问卷 填写数量
@@ -89,6 +91,7 @@ const load = () =>{
 		for(let i in res) {
 			data.questionnaireList.push(res[i])
 			data.qeidList.push(data.questionnaireList[i].id)
+			data.dellist[i] = false
 		}
 		// 查询填写数量 TODO 查询优化
 		getPaperCount(data.qeidList).then(res =>{
@@ -117,9 +120,11 @@ onShow(() =>{
 })
 
 // 问卷详情页 TODO
-const showDetail = () =>{
+const showDetail = (index) =>{
+	setLocalData("qeid", data.qeidList[index])
+	setLocalData("qidList", data.questionnaireList[index].questionList)
 	uni.navigateTo({
-		url: '/pages/questionnaire/questionnaireDetail'
+		url: '/pages/questionnaire/userPaperList'
 	})
 }
 
@@ -140,21 +145,48 @@ const selItem = (index) =>{
 
 const selAll = () =>{
 	for(let i in data.dellist) {
-		data.dellist[i] = true
+		data.dellist[i] = data.selAlled?false:true
 	}
+	data.selAlled = !data.selAlled
 }
 
 const delItem = () =>{
+	let noned = true
+	for(let i in data.dellist) {
+		if(data.dellist[i]) {
+			noned = false
+			break
+		}
+	}
+	if(noned) {
+		uni.showToast({
+			title: '请选择',
+			icon: "error",
+			duration: 1000,
+		})
+		return
+	}
 	uni.showModal({
 		title: '提示',
 		content: '是否确认删除?',
 		success: res =>{
 			if(res.confirm){
-				uni.showToast({
-					title: '请稍后重试',
-					icon: 'loading',
-					duration: 2000,
-				})
+				for(let i in data.dellist) {
+					uni.showToast({
+						title: '删除中...',
+						icon: 'loading',
+						duration: 2000,
+					})
+					if(data.dellist[i]) delQuestionnaire(data.qeidList[i]).then(res =>{
+						load()
+					}).catch(err =>{
+						uni.showToast({
+							title: '请稍后重试',
+							icon: 'error',
+							duration: 2000,
+						})
+					})
+				}
 			} 
 		}
 	})
