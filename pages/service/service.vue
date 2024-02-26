@@ -39,7 +39,7 @@
 					{
 						name: '人口报备',
 						icon: '/static/img/homeBar/Population_reporting.png',
-						url: '/pages/index/index'
+						url: '/pages/populationReport/populationReportList'
 					},
 					{
 						name: '公告通知',
