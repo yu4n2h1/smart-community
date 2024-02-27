@@ -34,7 +34,7 @@
 					{
 						name: '基础信息',
 						icon: '/static/img/homeBar/Community_Information.png',
-						url: '/pages/index/index'
+						url: '/pages/basicInfo/basicInfo'
 					},
 					{
 						name: '人口报备',
@@ -56,7 +56,7 @@
 					{
 						name: '小区信息',
 						icon: '/static/img/like.png',
-						url: '/pages/displaymes/displaymes?communityname=山东科技大学'
+						url: '/pages/basicInfo/neighborhoodInfo'
 					},
 					{
 						name: '物业公司',
