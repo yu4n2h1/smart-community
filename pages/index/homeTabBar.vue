@@ -13,7 +13,7 @@
 
 <script setup>
 	const navItems = [{
-			"path": "/pages/test/test",
+			"path": "/pages/populationReport/populationReportList",
 			"text": "人口报备",
 			"imgSrc": "/static/img/homeBar/Population_reporting.png",
 		},
@@ -33,7 +33,7 @@
 			"imgSrc":  "/static/img/homeBar/Residents_demands.png",
 		},
 		{
-			"path": "/pages/test/test",
+			"path": "/pages/basicInfo/basicInfo",
 			"text": "社区信息",
 			"imgSrc":  "/static/img/homeBar/Community_Information.png",
 		},

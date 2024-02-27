@@ -112,14 +112,6 @@
 				"enablePullDownRefresh" : false
 			}
 		},
-		// {
-		// 	"path" : "pages/mine/topBlock",
-		// 	"style" : 
-		// 	{
-		// 		"navigationBarTitleText" : "顶部块测试页面",
-		// 		"enablePullDownRefresh" : false
-		// 	}
-		// },
 		{
 			"path" : "pages/mine/test-demo",
 			"style" : 
@@ -162,6 +154,22 @@
 		},
 		{
 			"path" : "pages/displaymes/displaymes",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/basicInfo/basicInfo",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/basicInfo/neighborhoodInfo",
 			"style" : 
 			{
 				"navigationBarTitleText" : "",
