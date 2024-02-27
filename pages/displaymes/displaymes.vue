@@ -14,7 +14,6 @@
 
 <script setup>
 	import { onLoad, onShow } from "@dcloudio/uni-app";
-	// import { onLoad, onShow } from "@dcloudio/uni-app";
 	import { onBeforeMount, ref } from "vue";
 	import { service } from "@/utils/request.js";
 	
