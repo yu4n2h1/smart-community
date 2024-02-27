@@ -11,8 +11,8 @@
 				<view class="item-time">
 					<u-icon name="clock" style="padding: 7rpx 10rpx 0 0;" color="#98A1BB"></u-icon>
 					<text>填写时间：</text>
-					<text>{{item.gmtCreate.substring(0, 10)}}</text>
-					<text style="padding-left: 22rpx;">{{item.gmtCreate.substring(11, 16)}}</text>
+					<text>{{stamp2format(item.gmtCreate, 2)}}</text>
+					<text style="padding-left: 22rpx;">{{stamp2format(item.gmtCreate, 3)}}</text>
 				</view>
 			</view>
 		</view>
@@ -23,6 +23,7 @@
 import { onBeforeMount, reactive } from "vue";
 import { getPaperList, getQuestionnaire, getUserPaper } from "../../api/questionnaire.js"
 import { setLocalData, getLocalData, delLocalData } from "../../utils/cache.js";
+import { stamp2format } from "../../utils/timeHandler.js";
 
 const data = reactive({
 	userPaperList: [],
