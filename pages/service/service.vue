@@ -66,7 +66,7 @@
 					{
 						name: '业委员会信息',
 						icon: '/static/img/like.png',
-						url: '/pages/index/index'
+						url: '/pages/basicInfo/ownersCommittee'
 					},
 					{
 						name: '业主委员会公告',

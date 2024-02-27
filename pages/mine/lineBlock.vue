@@ -3,22 +3,18 @@
 		<view class="line-block">
 			<view style="border-bottom: 1px solid #ccc; padding: 20px;">
 				<text style="display: inline-block; float: left;">我的信息</text>
-				<u-icon name="arrow-right" style="display: inline-block; float: right;"></u-icon>
 			</view>
 			
 			<view style="border-bottom: 1px solid #ccc; padding: 20px;">
 				<text style="display: inline-block; float: left;">维修记录</text>
-				<u-icon name="arrow-right" style="display: inline-block; float: right;"></u-icon>
 			</view>
 			
 			<view style="border-bottom: 1px solid #ccc; padding: 20px;">
 				<text style="display: inline-block; float: left;">投诉建议</text>
-				<u-icon name="arrow-right" style="display: inline-block; float: right;"></u-icon>
 			</view>
 			
 			<view style="border-bottom: 1px solid #ccc; padding: 20px;">
 				<text style="display: inline-block; float: left;">我的房产</text>
-				<u-icon name="arrow-right" style="display: inline-block; float: right;"></u-icon>
 			</view>				
 		</view>
 	</view>
@@ -27,7 +23,6 @@
 		<view class="line-block">
 			<view style="border-bottom: 1px solid #ccc; padding: 20px;">
 				<text style="display: inline-block; float: left;">设置</text>
-				<u-icon name="arrow-right" style="display: inline-block; float: right;"></u-icon>
 			</view>
 		</view>
 	</view>
