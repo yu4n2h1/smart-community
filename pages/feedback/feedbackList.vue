@@ -10,7 +10,7 @@
 	<u-loadmore :status="status" />
 	<view class="btn">
 		<view class="btn-icon">
-			<u-icon name="plus" color="#fff" size="70rpx"  @click="addItem()"></u-icon>
+			<u-icon name="plus" color="#fff" size="70rpx" @click="addItem()"></u-icon>
 		</view>
 	</view>
 </template>
@@ -37,7 +37,7 @@
 				//分页
 				page: {
 					current: 1,
-					size: 5
+					size: 30
 				}
 			}
 		},
@@ -62,11 +62,9 @@
 				})
 			},
 			addItem() {
-				
-					uni.navigateTo({
-						url: '/pages/feedback/feedbackCreate'
-					})
-					
+				uni.navigateTo({
+					url: '/pages/feedback/feedbackCreate'
+				})
 			},
 			//处理feedback
 			handleFeedback(feedbackList) {
@@ -91,7 +89,6 @@
 			},
 			//按照Tag搜索
 			searchTag(keyword) {
-				console.log(keyword)
 				uni.navigateTo({
 					url: `/pages/feedback/feedbackSearch?column=tag&value=${keyword}&current=1&size=${this.page.size}`
 				})
@@ -100,7 +97,6 @@
 			load() {
 				this.getList().then(data => {
 					this.feedbackList.push(...data)
-					console.log(this.feedbackList)
 				}).catch(err => {
 					this.status = "nomore"
 				})
