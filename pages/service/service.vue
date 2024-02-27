@@ -61,7 +61,7 @@
 					{
 						name: '物业公司',
 						icon: '/static/img/like.png',
-						url: '/pages/index/index'
+						url: '/pages/basicInfo/company'
 					},
 					{
 						name: '业委员会信息',
