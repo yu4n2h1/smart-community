@@ -17,8 +17,8 @@
 			<view class="item-btm">
 				<view class="item-time">
 					<u-icon name="clock" style="padding: 7rpx 10rpx 0 0;" color="#98A1BB"></u-icon>
-					<text style="color: #98A1BB;">{{item.gmtCreate.substring(0, 10)}}</text>
-					<text style="padding-left: 22rpx; color: #98A1BB;">{{item.gmtCreate.substring(11, 16)}}</text>
+					<text style="color: #98A1BB;">{{stamp2format(item.gmtCreate, 2)}}</text>
+					<text style="padding-left: 22rpx; color: #98A1BB;">{{stamp2format(item.gmtCreate, 3)}}</text>
 				</view>
 			</view>
 		</view>
@@ -36,6 +36,7 @@ import { onBeforeMount, reactive } from "vue";
 import { getPaperList, getQuestionnaire, getUserPaper } from "../../api/questionnaire.js"
 import { getPopulationReport } from "../../api/populationReport.js"
 import { setLocalData, getLocalData, delLocalData } from "../../utils/cache.js";
+import { stamp2format } from "../../utils/timeHandler.js";
 
 const data = reactive({
 	populationReportList: [],
@@ -62,6 +63,7 @@ const load = () =>{
 	// 获取答卷数据
 	getPopulationReport(getLocalData("user-token").id).then(res =>{
 		if(res.code) {
+			console.log(res.data);
 			data.status = "当前没有提交"
 			data.populationReportList.push(...res.data)
 		}
