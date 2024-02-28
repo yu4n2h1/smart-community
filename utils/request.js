@@ -53,21 +53,28 @@ export const serviceWithParam = (url, method, data) => {
 
 }
 uni.addInterceptor('request', {
-	invoke(requestConfig) {
-		if (uni.getStorageSync('user-token') || uni.getStorageSync('user-token') == "") {
-			return;
+	invoke: (requestConfig) => {
+		let whiteUrlList = '/user/login';
+		if (requestConfig.url.search(whiteUrlList) == -1 && (uni.getStorageSync('user-token') == null || uni
+				.getStorageSync('user-token') == "")) {
+
+			return false;
 		} else {
 			requestConfig.header.Authorization = uni.getStorageSync('user-token');
 		}
 		return requestConfig;
 	},
 	fail(error) {
-		
+		console.error('请求失败:', error);
 	},
 });
 uni.addInterceptor('uploadFile', {
 	invoke(requestConfig) {
-		requestConfig.header.Authorization = uni.getStorageSync('user-token');
+		if (uni.getStorageSync('user-token') == null || uni.getStorageSync('user-token') == "") {
+			return false;
+		} else {
+			requestConfig.header.Authorization = uni.getStorageSync('user-token');
+		}
 		return requestConfig;
 	},
 	fail(error) {
