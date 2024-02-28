@@ -137,6 +137,7 @@
 			let a = uni.uploadFile({
 				url: config.developUrl + "/feedback/uploadPic", // 接口地址
 				filePath: url,
+				header:{},
 				name: 'file',
 				success: (res) => {
 					const pictures = JSON.parse(res.data)

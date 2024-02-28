@@ -172,8 +172,9 @@
 				reject("error")
 			}
 		}).catch(err => {
+			
 			uni.showToast({
-				title: "登录失败",
+				title: ""+err,
 				icon: "error"
 			})
 		})
