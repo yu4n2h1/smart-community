@@ -76,7 +76,7 @@
 					{
 						name: '业主诉求',
 						icon: '/static/img/homeBar/Owner_Appeal.png',
-						url: '/pages/index/index'
+						url: '/pages/feedback/neighborhoodFeedbackList'
 					},
 				],
 				list3 : [

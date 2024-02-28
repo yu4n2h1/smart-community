@@ -1,5 +1,5 @@
 <!-- 
-	反馈内容列表
+	小区反馈内容列表
 	
 	TODO: 缓存机制
  -->
@@ -24,8 +24,10 @@
 	import {
 		getFeedbackByKeyword,
 		getFeedback
-	} from "../../api/feedback.js"
-import { getLocalData } from "../../utils/cache"
+	} from "../../api/neighborhoodFeedback.js"
+	import {
+		getLocalData
+	} from "../../utils/cache"
 	export default {
 		data() {
 			return {
@@ -64,7 +66,7 @@ import { getLocalData } from "../../utils/cache"
 			},
 			addItem() {
 				uni.navigateTo({
-					url: '/pages/feedback/feedbackCreate'
+					url: '/pages/feedback/neighborhoodFeedbackCreate'
 				})
 			},
 			//处理feedback
@@ -85,13 +87,13 @@ import { getLocalData } from "../../utils/cache"
 			//搜索
 			search(keyword) {
 				uni.navigateTo({
-					url: `/pages/feedback/feedbackSearch?column=keyword&value=${keyword}&current=1&size=${this.page.size}`
+					url: `/pages/feedback/neighborhoodFeedbackSearch?column=keyword&value=${keyword}&current=1&size=${this.page.size}`
 				})
 			},
 			//按照Tag搜索
 			searchTag(keyword) {
 				uni.navigateTo({
-					url: `/pages/feedback/feedbackSearch?column=tag&value=${keyword}&current=1&size=${this.page.size}`
+					url: `/pages/feedback/neighborhoodFeedbackSearch?column=tag&value=${keyword}&current=1&size=${this.page.size}`
 				})
 			},
 			//加载逻辑，缓存机制待完成

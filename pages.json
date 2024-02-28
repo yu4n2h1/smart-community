@@ -191,6 +191,38 @@
 				"navigationBarTitleText" : "",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/feedback/neighborhoodFeedbackList",
+			"style" : 
+			{
+				"navigationBarTitleText" : "业主诉求",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/feedback/neighborhoodFeedbackCreate",
+			"style" : 
+			{
+				"navigationBarTitleText" : "业主诉求",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/feedback/neighborhoodFeedbackSearch",
+			"style" : 
+			{
+				"navigationBarTitleText" : "业主诉求",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/mine/settings",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

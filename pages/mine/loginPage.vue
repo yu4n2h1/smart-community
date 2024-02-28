@@ -4,7 +4,8 @@
 		<image src="https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/login.jpg" class="background-image"></image>
 
 		<view style="margin-top: 60vh;">
-			<button @click="show = true" class="overlay-button" style="background-color: blue;">业主登录</button>
+			<button @click="loginConfirm(null,true)" class="overlay-button"
+				style="background-color: blue;">业主登录</button>
 			<view class="test" style="margin-top: 20px; display: flex; flex-direction: row; align-items: center;">
 				<checkbox>
 					<!-- 这里不能使用<input type="checkbox"/> 会不显示 -->
@@ -35,6 +36,7 @@
 		</u-modal>
 
 		<loginModal :show="show" @getUserInfo="loginConfirm" @closeModal="show=false"></loginModal>
+
 	</view>
 </template>
 <script setup>
@@ -44,7 +46,15 @@
 		onMounted
 	} from 'vue';
 	import loginModal from "../../components/loginModal.vue"
-	import {login} from "../../api/login.js"
+	import {
+		login
+	} from "../../api/login.js"
+	import {
+		setLocalData
+	} from "../../utils/cache.js"
+	import config from "../../system.config.js"
+
+	const backgroundUrl = `${config.fileUrl}/loginPage/img/login.jpg`
 	let show = ref(false);
 	const showDeal1 = ref(false);
 	const showDeal2 = ref(false);
@@ -72,31 +82,12 @@
 	const getUserInfo = (e) => {
 		userInfo.value = e
 	}
-	// wx.setStorageSync('nickname',title.value)
-	// console.log(wx.getStorageSync('nickname'))
-	const onChooseAvatar = (e) => {
-		console.log("已进入")
-		avatarUrl.value = e.detail.avatarUrl;
-		console.log(avatarUrl.value);
-	};
-	const getUserPhone = (e) => {
-		if (e.detail.errMsg === 'getPhoneNumber:ok') {
-			console.log('手机号数据', e);
-			// 在这一步把 手机号 头像 昵称 code 一次性全部丢给后端
-		} else {
-			// 适应你的项目结构来显示错误提示
-			console.error('授权失败无法登录！');
-		}
-	};
-	// onMounted(() => {
-	//   userCode();
-	// });
+
 	const getCode = () => {
 		return new Promise((resolve, reject) => {
 			uni.login({
 				provider: 'weixin',
 				success(res) {
-					console.log('登录code', res.code);
 					logCode.value = res.code;
 					resolve(logCode.value); // 表示异步操作成功
 				},
@@ -107,32 +98,12 @@
 		});
 	};
 
-	const getOpenid = (code) => {
-		return new Promise((resolve, reject) => {
-			console.log(code);
-			wx.request({
-				url: `https://api.weixin.qq.com/sns/jscode2session?appid=wx77113e1b6b983a02&secret=fcfefbca594f405b962e521e2f3f7759&js_code=${code}&grant_type=authorization_code`,
-				success: (res) => {
-					console.log(res.data.openid);
-					resolve(res.data.openid);
-					// userInfo.openid=res.data.openid
-					// //获取到你的openid
-					// console.log(userInfo.openid);
-				},
-				fail(err) {
-					reject(err); // 表示异步操作失败
-				},
-			})
-		});
-	};
-
 	const getAvatarData = (openid) => {
 		return new Promise((resolve, reject) => {
 			wx.getFileSystemManager().readFile({
 				filePath: avatarUrl.value, //选择图片返回的相对路径
 				encoding: 'base64', //编码格式
 				success: res => { //成功的回调
-					console.log('data:image/png;base64,' + res.data)
 				}
 			})
 			// wx.uploadFile({
@@ -200,27 +171,47 @@
 		});
 	};
 
-
-	const loginConfirm = async (userInfo) => {
-
+	const loginConfirm = async (userInfo, verify = false) => {
 		const code = await getCode();
+		let userName = null;
+		let neighborhoodName = null;
+		if (userInfo) {
+			userName = userInfo.name
+			neighborhoodName = userInfo.neighborhoodName
+		}
 		const req = {
-			code: code,
-			name: userInfo.name,
-			neighborhoodName: userInfo.neighborhoodName
+			code,
+			name: userName,
+			neighborhoodName,
+			verify
 		}
-		console.log(req)
-		try {
-			login(req).then(res => {
-				console.log(res)
-			})
 
-			// const result3 = await postUserinfo2Back(openid, avatarByte);
-		} catch (error) {
-			console.error('Error:', error);
-		}
-		show.value = false
-	};
+		login(req).then(res => {
+			if (res.msg == "success") {
+				setLocalData("user-token", res.data.token)
+				show.value = false
+				uni.switchTab({
+					url: "/pages/mine/mine"
+				})
+				uni.showToast({
+					title: "登录成功"
+				})
+			} else {
+				if (verify) {
+					show.value = true
+					return
+				}
+				reject("error")
+			}
+		}).catch(err => {
+			uni.showToast({
+				title: "登录失败",
+				icon: "error"
+			})
+		})
+
+	}
+	// const result3 = await postUserinfo2Back(openid, avatarByte);
 </script>
 
 <style lang="scss">

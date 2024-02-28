@@ -1,6 +1,6 @@
 <template>
 	<u-search placeholder="要查询的关键字" v-model="keyword" @search="search"></u-search>
-	<PostCard v-for="feedback in feedbackList" :key=feedback.id :feedback="feedback" @searchTag="searchTag"></PostCard>
+	<PostCard v-for="feedback in feedbackList2" :key=feedback.id :feedback="feedback" @searchTag="searchTag"></PostCard>
 	<u-loadmore :status="status" />
 </template>
 
@@ -20,7 +20,7 @@
 				// 搜索关键字
 				keyword: "",
 				//反馈列表
-				feedbackList: [],
+				feedbackList2: [],
 				//当前u-loadmore状态
 				status: 'loadmore',
 				//查询状态
@@ -29,7 +29,7 @@
 
 				page: {
 					current: 1,
-					size: 5
+					size: 30
 				},
 				mored: false
 			}
@@ -95,8 +95,8 @@
 			//加载逻辑，缓存机制待完成
 			load() {
 				this.getList().then(data => {
-					this.feedbackList.push(...data)
-					console.log(this.feedbackList)
+					this.feedbackList2.push(...data)
+					console.log(this.feedbackList2)
 				}).catch(err => {
 					this.status = "nomore"
 				})

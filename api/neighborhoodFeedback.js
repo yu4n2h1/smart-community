@@ -5,13 +5,13 @@ import {
 
 // 查询问卷
 export function getFeedbackByKeyword(wd) {
-	return service("/feedback/findByColumn", "GET", wd)
+	return service("/feedback/neighborhood/findByColumn", "GET", wd)
 }
 
 export function getFeedback(num) {
-	return service("/feedback/findAll", "GET", num)
+	return service("/feedback/neighborhood/findByNid", "GET", num)
 }
 
 export function saveFeedback(feedback) {
-	return service("/feedback/save", "POST", feedback)
+	return service("/feedback/neighborhood/save", "POST", feedback)
 }
