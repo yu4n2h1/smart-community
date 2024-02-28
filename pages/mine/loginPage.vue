@@ -136,38 +136,6 @@
 					console.log('存入图片二进制数据成功！');
 				}
 			});
-			// console.log(uni.getStorageSync('avatar'));
-
-			// console.log(uni.getStorageSync('nickname'));
-			// console.log(nickname.value)
-			// uni.request({
-			// 	  url: "http://127.0.0.1:8080/user/addUser",
-			// 	  method: 'POST',
-			// 	  header: {
-			// 	        'content-type': 'application/json', // 设置请求的 header，使用 JSON 格式
-			// 		},
-			// 	  data: {
-			// 		id: openid,
-			// 		username: nickname.value,
-			// 		phone: phone.value,
-			// 		// avatar: avatarByte,
-			// 		isauthentic: isauthentic.value,
-			// 		community_name: community_name.value,
-			// 		islogin: '1'
-			// 		// 其他属性...
-			// 	  },
-			// 	  success: (res) => {
-			// 		// 处理后端返回的数据
-			// 		console.log('后端返回的数据:', res.data);
-			// 		// 将数据传递给下一个 then
-			// 		resolve(res.data);
-			// 		wx.setStorageSync('nickname', nickname.value)
-			// 	  },
-			// 	  fail: (error) => {
-			// 		// 请求失败的处理
-			// 		reject(error);
-			// 	  },
-			// });
 		});
 	};
 

@@ -16,7 +16,7 @@
 	import {
 		ref,
 		computed,
-		onMounted
+		
 	} from 'vue';
 	import {
 		onLoad,
@@ -32,9 +32,8 @@
 	onShow(() => {
 		service("/user/findByOpenid", "GET", null).then(res => {
 			if (res.msg == "success") {
-				nickname.value = "你好，" + res.data.name
+				nickname.value = "您好，" + res.data.name
 				toLoginShow.value = false
-				console.log(toLoginShow)
 			} else {
 				nickname.value = "";
 				toLoginShow.value = true

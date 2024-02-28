@@ -38,17 +38,6 @@
 			default: true
 		}
 	})
-
-	onShow(() => {
-		// 页面每次显示时的逻辑
-		nickname.value = uni.getStorageSync('nickname');
-		const avatarByte = uni.getStorageSync('avatar');
-		// avatarUrl.value = saveBlobAsTempFile(avatarByte);
-
-		// 调用图片预览函数
-		// previewImage();
-	});
-
 	const saveBlobAsTempFile = (avatarByte) => {
 		const fs = uni.getFileSystemManager();
 
