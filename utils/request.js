@@ -5,15 +5,18 @@
  
  */
 import sysurl from '../system.config.js'
-	
-export const service = (url, method, data) =>{
-	
-	return new Promise((resolve, reject) =>{
-		
+
+export const service = (url, method, data) => {
+
+	return new Promise((resolve, reject) => {
+
 		uni.request({
 			url: sysurl.developUrl + url,
 			method,
 			data,
+			header: {
+				'Authorization': `${uni.getStorageSync('token')}`
+			},
 			success: (res) => {
 				resolve(res.data)
 			},
@@ -21,20 +24,23 @@ export const service = (url, method, data) =>{
 				reject(err)
 			}
 		})
-		
+
 	})
-	
+
 }
 
-export const serviceWithParam = (url, method, data) =>{
-	
-	return new Promise((resolve, reject) =>{
-		
+export const serviceWithParam = (url, method, data) => {
+
+	return new Promise((resolve, reject) => {
+
 		uni.request({
 			url: sysurl.developUrl + url,
 			method,
 			data,
-			header:{'content-type':'application/x-www-form-urlencoded'},
+			header: {
+				'content-type': 'application/x-www-form-urlencoded',
+				'Authorization': `${uni.getStorageSync('token')}`
+			},
 			success: (res) => {
 				resolve(res.data)
 			},
@@ -42,7 +48,29 @@ export const serviceWithParam = (url, method, data) =>{
 				reject(err)
 			}
 		})
-		
+
 	})
-	
+
 }
+uni.addInterceptor('request', {
+	invoke(requestConfig) {
+		if (uni.getStorageSync('user-token') || uni.getStorageSync('user-token') == "") {
+			return;
+		} else {
+			requestConfig.header.Authorization = uni.getStorageSync('user-token');
+		}
+		return requestConfig;
+	},
+	fail(error) {
+		
+	},
+});
+uni.addInterceptor('uploadFile', {
+	invoke(requestConfig) {
+		requestConfig.header.Authorization = uni.getStorageSync('user-token');
+		return requestConfig;
+	},
+	fail(error) {
+		console.error('请求失败:', error);
+	},
+});

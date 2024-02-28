@@ -9,11 +9,12 @@
 </template>
 
 <script setup>
+	import config from "../../system.config.js"
 	const swiperArr = [
-		'https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/swiper1.jpg',
-		'https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/swiper2.jpg',
-		'https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/swiper3.jpg',
-		'https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/swiper4.jpg'
+		`${config.fileUrl}/index/img/swiper1.jpg`,
+		`${config.fileUrl}/index/img/swiper2.jpg`,
+		`${config.fileUrl}/index/img/swiper3.jpg`,
+		`${config.fileUrl}/index/img/swiper4.jpg`
 	]
 </script>
 

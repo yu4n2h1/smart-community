@@ -73,7 +73,14 @@
 
 	//点击提交确认按钮
 	function confirm() {
-		emit('getUserInfo', model1.userInfo)
+		form1.value.validate().then(()=>{
+			emit('getUserInfo', model1.userInfo)
+		}).catch(()=>{
+			uni.showToast({
+				title:"请检查输入内容",
+				icon:"error"
+			})
+		})
 	}
 
 	function neighborhoodNameSelect(e) {

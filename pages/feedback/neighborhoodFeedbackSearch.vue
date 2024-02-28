@@ -1,31 +1,19 @@
-<!-- 
-	反馈内容列表
-	
-	TODO: 缓存机制
- -->
-
 <template>
-	<u-search placeholder="要查询的关键字" v-model="keyword" @search="search" :show-action="false"></u-search>
+	<u-search placeholder="要查询的关键字" v-model="keyword" @search="search"></u-search>
 	<PostCard v-for="feedback in feedbackList" :key=feedback.id :feedback="feedback" @searchTag="searchTag"></PostCard>
 	<u-loadmore :status="status" />
-	<view class="btn">
-		<view class="btn-icon">
-			<u-icon name="plus" color="#fff" size="70rpx" @click="addItem()"></u-icon>
-		</view>
-	</view>
 </template>
 
 <script>
 	import PostCard from "../../components/postCard.vue"
 	import config from "../../system.config.js"
 	import {
-		getUserToken
-	} from "../../utils/token.js"
+		setLocalData
+	} from "../../utils/cache"
 	import {
 		getFeedbackByKeyword,
 		getFeedback
-	} from "../../api/feedback.js"
-import { getLocalData } from "../../utils/cache"
+	} from "../../api/neighborhoodFeedback.js"
 	export default {
 		data() {
 			return {
@@ -35,11 +23,15 @@ import { getLocalData } from "../../utils/cache"
 				feedbackList: [],
 				//当前u-loadmore状态
 				status: 'loadmore',
+				//查询状态
+				column: "",
 				//分页
+
 				page: {
 					current: 1,
 					size: 30
-				}
+				},
+				mored: false
 			}
 		},
 		components: {
@@ -48,7 +40,9 @@ import { getLocalData } from "../../utils/cache"
 		methods: {
 			getList() {
 				return new Promise((promise, reject) => {
-					getFeedback({
+					getFeedbackByKeyword({
+						column: this.column,
+						value: this.keyword,
 						current: this.page.current,
 						size: this.page.size
 					}).then(data => {
@@ -63,9 +57,11 @@ import { getLocalData } from "../../utils/cache"
 				})
 			},
 			addItem() {
-				uni.navigateTo({
-					url: '/pages/feedback/feedbackCreate'
-				})
+				if (this.mored) {
+					uni.navigateTo({
+						url: '/pages/feedback/feedbackCreate'
+					})
+				}
 			},
 			//处理feedback
 			handleFeedback(feedbackList) {
@@ -85,13 +81,15 @@ import { getLocalData } from "../../utils/cache"
 			//搜索
 			search(keyword) {
 				uni.navigateTo({
-					url: `/pages/feedback/feedbackSearch?column=keyword&value=${keyword}&current=1&size=${this.page.size}`
+					url: `/pages/feedback/neighborhoodFeedbackSearch?column=keyword&value=${keyword}&current=1&size=${this.page.size}`
 				})
 			},
-			//按照Tag搜索
 			searchTag(keyword) {
+				if (this.column == "tag") {
+					return;
+				}
 				uni.navigateTo({
-					url: `/pages/feedback/feedbackSearch?column=tag&value=${keyword}&current=1&size=${this.page.size}`
+					url: `/pages/feedback/neighborhoodFeedbackSearch?column=tag&value=${keyword}&current=1&size=${this.page.size}`
 				})
 			},
 			//加载逻辑，缓存机制待完成
@@ -102,14 +100,13 @@ import { getLocalData } from "../../utils/cache"
 					this.status = "nomore"
 				})
 			}
-		},
 
-		onShow() {
-			this.feedbackList = []
-			uni.pageScrollTo({
-				scrollTop: 0,
-				duration: 0
-			})
+		},
+		onLoad(option) {
+			this.page.current = option.current
+			this.page.size = option.size
+			this.keyword = option.value
+			this.column = option.column
 			this.load()
 		},
 		onReachBottom() {
@@ -122,36 +119,6 @@ import { getLocalData } from "../../utils/cache"
 	}
 </script>
 
-<style scoped>
-	.btn {
-		position: fixed;
-		top: 80%;
-		left: 80%;
-		width: 100rpx;
-		height: 100rpx;
-	}
+<style>
 
-	.btn-icon {
-		width: 100rpx;
-		height: 100rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #22cdee;
-		border-radius: 50%;
-		transition: 0.5s ease all;
-	}
-
-	.btn-icon-otr {
-		width: 100rpx;
-		height: 100rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #22cdee;
-		border-radius: 50%;
-		transition: 0.5s ease all;
-		position: absolute;
-		left: 0rpx;
-	}
 </style>

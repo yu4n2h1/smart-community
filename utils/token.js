@@ -1,8 +1,9 @@
 import {getLocalData} from '../utils/cache.js'
 
 export function getUserToken(){
-	if(getLocalData('user-token')){
-		return
+	const token = uni.getStorageSync("user-token")
+	if(token){
+		return token
 	} else {
 		uni.showModal({
 			title: '提示',
