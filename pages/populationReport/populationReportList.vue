@@ -58,6 +58,8 @@ const create = () =>{
 
 // 初始化
 const load = () =>{
+	
+	console.log(getLocalData("user-token"))
 	// 清楚缓存
 	data.populationReportList.splice(0)
 	// 获取答卷数据

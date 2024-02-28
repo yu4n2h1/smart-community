@@ -37,7 +37,7 @@
       }
     }
 
-	onLoad(() => {
+	onShow(() => {
 		const option = {"categoryType" : "公告通知"};
 		fetchArticles(option);
 		tittle.value = option.categoryType;

@@ -6,7 +6,7 @@
 
 <script setup>
 	const logout = () => {
-		uni.removeStorageSync("user-token")
+		uni.removeStorageSync("token")
 		uni.navigateBack({delta:1})
 		uni.showToast({
 			title: "退出登录成功"

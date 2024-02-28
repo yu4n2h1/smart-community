@@ -156,7 +156,7 @@
 
 		login(req).then(res => {
 			if (res.msg == "success") {
-				setLocalData("user-token", res.data.token)
+				setLocalData("token", res.data.token)
 				show.value = false
 				uni.switchTab({
 					url: "/pages/mine/mine"

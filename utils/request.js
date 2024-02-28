@@ -54,14 +54,7 @@ export const serviceWithParam = (url, method, data) => {
 }
 uni.addInterceptor('request', {
 	invoke: (requestConfig) => {
-		let whiteUrlList = '/user/login';
-		if (requestConfig.url.search(whiteUrlList) == -1 && (uni.getStorageSync('user-token') == null || uni
-				.getStorageSync('user-token') == "")) {
-
-			return false;
-		} else {
-			requestConfig.header.Authorization = uni.getStorageSync('user-token');
-		}
+		requestConfig.header.Authorization = uni.getStorageSync('token');
 		return requestConfig;
 	},
 	fail(error) {
@@ -70,11 +63,7 @@ uni.addInterceptor('request', {
 });
 uni.addInterceptor('uploadFile', {
 	invoke(requestConfig) {
-		if (uni.getStorageSync('user-token') == null || uni.getStorageSync('user-token') == "") {
-			return false;
-		} else {
-			requestConfig.header.Authorization = uni.getStorageSync('user-token');
-		}
+		requestConfig.header.Authorization = uni.getStorageSync('token');
 		return requestConfig;
 	},
 	fail(error) {
