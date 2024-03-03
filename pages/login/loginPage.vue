@@ -44,7 +44,7 @@
 	import loginModal from "../../components/loginModal.vue"
 	import {
 		login
-	} from "../../api/login.js"
+	} from "./api/login.js"
 	import {
 		setLocalData
 	} from "../../utils/cache.js"

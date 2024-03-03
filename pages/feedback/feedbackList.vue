@@ -24,7 +24,7 @@
 	import {
 		getFeedbackByKeyword,
 		getFeedback
-	} from "../../api/feedback.js"
+	} from "./api/feedback.js"
 import { getLocalData } from "../../utils/cache"
 	export default {
 		data() {

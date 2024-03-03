@@ -24,7 +24,7 @@
 	import {
 		getFeedbackByKeyword,
 		getFeedback
-	} from "../../api/neighborhoodFeedback.js"
+	} from "./api/neighborhoodFeedback.js"
 	import {
 		getLocalData
 	} from "../../utils/cache"

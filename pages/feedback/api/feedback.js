@@ -1,7 +1,7 @@
 import {
 	service,
 	serviceWithParam
-} from "../utils/request.js"
+} from "../../../utils/request.js"
 
 // 查询问卷
 export function getFeedbackByKeyword(wd) {
