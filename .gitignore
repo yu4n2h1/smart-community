@@ -1,7 +1,6 @@
 .vscode/
 node_modules/
 .DS_Store
-uni_modules/
 .hbuilderx/
 .vite/
 unpackage/
