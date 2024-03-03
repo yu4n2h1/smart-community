@@ -1,20 +1,28 @@
 <template>
 	<view class="sw-view" style="align-self: center;">
-		<swiper class="sw-cont" indicator-active-color="#22CDEE" indicator-dots circular autoplay>
-			<swiper-item style="text-align: center" class="sw-item" v-for="(item,index) in swiperArr" :key="index">
-				<image class="sw-img" :src="item"></image>
-			</swiper-item>
-		</swiper>
+		<u-swiper show-title="true" :list="swiperArr" indicator circular previous-margin="15" next-margin="15"
+			height="100%" interval="8000"></u-swiper>
 	</view>
 </template>
 
 <script setup>
 	import config from "../../system.config.js"
-	const swiperArr = [
-		`${config.fileUrl}/index/img/swiper1.jpg`,
-		`${config.fileUrl}/index/img/swiper2.jpg`,
-		`${config.fileUrl}/index/img/swiper3.jpg`,
-		`${config.fileUrl}/index/img/swiper4.jpg`
+	const swiperArr = [{
+			url: `${config.fileUrl}/index/img/swiper1.jpg`,
+			title: "标题1"
+		},
+		{
+			url: `${config.fileUrl}/index/img/swiper2.jpg`,
+			title: "标题2"
+		},
+		{
+			url: `${config.fileUrl}/index/img/swiper3.jpg`,
+			title: "标题3"
+		},
+		{
+			url: `${config.fileUrl}/index/img/swiper4.jpg`,
+			title: "标题4"
+		}
 	]
 </script>
 

@@ -64,167 +64,173 @@
 				"enablePullDownRefresh": false
 			}
 		},
+
 		{
-			"path": "pages/feedback/feedbackCreate",
+			"path": "pages/notice/notice",
 			"style": {
-				"navigationBarTitleText": "意见反馈",
+				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/feedback/feedbackList",
-			"style" : 
-			{
-				"navigationBarTitleText" : "居民诉求",
-				"enablePullDownRefresh" : true
+			"path": "pages/notice/noticedetail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/notice/notice",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/notice/noticedetail",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
-			}
-			
-		},
-		{
-			"path" : "pages/feedback/feedbackSearch",
-			"style" : 
-			{
-				"navigationBarTitleText" : "居民诉求",
-				"enablePullDownRefresh" : false
+			"path": "pages/message/ownersCommittee",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/mine/mine",
-			"style" : 
-			{
-				"navigationBarTitleText" : "我的",
-				"enablePullDownRefresh" : false
+			"path": "pages/populationReport/populationReport",
+			"style": {
+				"navigationBarTitleText": "报备填写",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/mine/test-demo",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/populationReport/populationReportList",
+			"style": {
+				"navigationBarTitleText": "人口报备",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/mine/loginPage",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/displaymes/displaymes",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/message/ownersCommittee",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/basicInfo/basicInfo",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/populationReport/populationReport",
-			"style" : 
-			{
-				"navigationBarTitleText" : "报备填写",
-				"enablePullDownRefresh" : false
+			"path": "pages/basicInfo/neighborhoodInfo",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/populationReport/populationReportList",
-			"style" : 
-			{
-				"navigationBarTitleText" : "人口报备",
-				"enablePullDownRefresh" : false
+			"path": "pages/basicInfo/ownersCommittee",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/displaymes/displaymes",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/basicInfo/company",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/basicInfo/basicInfo",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/mine/settings",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/basicInfo/neighborhoodInfo",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
-			}
-		},
-		{
-			"path" : "pages/basicInfo/ownersCommittee",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
-			}
-		},
-		{
-			"path" : "pages/basicInfo/company",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
-			}
-		},
-		{
-			"path" : "pages/feedback/neighborhoodFeedbackList",
-			"style" : 
-			{
-				"navigationBarTitleText" : "业主诉求",
-				"enablePullDownRefresh" : false
-			}
-		},
-		{
-			"path" : "pages/feedback/neighborhoodFeedbackCreate",
-			"style" : 
-			{
-				"navigationBarTitleText" : "业主诉求",
-				"enablePullDownRefresh" : false
-			}
-		},
-		{
-			"path" : "pages/feedback/neighborhoodFeedbackSearch",
-			"style" : 
-			{
-				"navigationBarTitleText" : "业主诉求",
-				"enablePullDownRefresh" : false
-			}
-		},
-		{
-			"path" : "pages/mine/settings",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/mine/test-demo",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		}
+
+		
 	],
+	"subPackages": [{
+			"name": "login",
+			"root": "pages/login",
+			"pages": [
+				{
+					"path": "loginPage",
+					"style": {
+						"navigationBarTitleText": "登录",
+						"enablePullDownRefresh": false
+					}
+				}
+				
+			]
+		},
+		{
+			"name": "feedback",
+			"root": "pages/feedback",
+			"pages": [{
+					"path": "neighborhoodFeedbackList",
+					"style": {
+						"navigationBarTitleText": "业主诉求",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "neighborhoodFeedbackCreate",
+					"style": {
+						"navigationBarTitleText": "意见反馈",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "neighborhoodFeedbackSearch",
+					"style": {
+						"navigationBarTitleText": "业主诉求",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "feedbackCreate",
+					"style": {
+						"navigationBarTitleText": "意见反馈",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "feedbackList",
+					"style": {
+						"navigationBarTitleText": "居民诉求",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "feedbackSearch",
+					"style": {
+						"navigationBarTitleText": "居民诉求",
+						"enablePullDownRefresh": false
+					}
+				}
+			]
+		}
+	],
+	"preloadRule": {
+		"pages/service/service": {
+			"network": "all",
+			"packages": ["feedback"]
+		},
+		"pages/index/index":{
+			"network": "all",
+			"packages": ["login"]
+		}
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

@@ -28,7 +28,7 @@
 			"imgSrc":  "/static/img/homeBar/Chief.png",
 		},
 		{
-			"path": "/pages/test/test",
+			"path": "/pages/feedback/feedbackList",
 			"text": "居民诉求",
 			"imgSrc":  "/static/img/homeBar/Residents_demands.png",
 		},
@@ -38,7 +38,7 @@
 			"imgSrc":  "/static/img/homeBar/Community_Information.png",
 		},
 		{
-			"path": "/pages/test/test",
+			"path": "/pages/feedback/neighborhoodFeedbackList",
 			"text": "业主诉求",
 			"imgSrc":  "/static/img/homeBar/Owner_Appeal.png",
 		},
