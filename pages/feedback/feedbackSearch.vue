@@ -13,7 +13,7 @@
 	import {
 		getFeedbackByKeyword,
 		getFeedback
-	} from "../../api/feedback.js"
+	} from "./api/feedback.js"
 	export default {
 		data() {
 			return {

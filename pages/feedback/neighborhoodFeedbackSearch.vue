@@ -13,7 +13,7 @@
 	import {
 		getFeedbackByKeyword,
 		getFeedback
-	} from "../../api/neighborhoodFeedback.js"
+	} from "./api/neighborhoodFeedback.js"
 	export default {
 		data() {
 			return {

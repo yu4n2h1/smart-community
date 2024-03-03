@@ -33,7 +33,7 @@
 	import config from '../../system.config.js'
 	import {
 		saveFeedback
-	} from "../../api/feedback.js"
+	} from "./api/feedback.js"
 	let feedback = reactive({
 		phone: "",
 		comment: "",
