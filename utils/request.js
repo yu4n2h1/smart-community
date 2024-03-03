@@ -50,10 +50,24 @@ export const serviceWithParam = (url, method, data) => {
 		})
 
 	})
-
 }
+uni.addInterceptor('navigateTo',{
+	invoke:(config)=> {
+		if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == "") {
+			config.url = "/pages/login/loginPage"
+			uni.showToast({
+				title:"请先登录"
+			})
+		}
+		return config
+	}
+})
 uni.addInterceptor('request', {
 	invoke: (requestConfig) => {
+		const whiteList = "/user/login"
+		if (requestConfig.url.search(whiteList) == -1 && (uni.getStorageSync('token') == null || uni.getStorageSync('token') == "")) {
+			return false
+		}
 		requestConfig.header.Authorization = uni.getStorageSync('token');
 		return requestConfig;
 	},
@@ -62,7 +76,11 @@ uni.addInterceptor('request', {
 	},
 });
 uni.addInterceptor('uploadFile', {
-	invoke(requestConfig) {
+	invoke: (requestConfig) => {
+		const whiteList = "/user/login"
+		if (requestConfig.url.search(whiteList) == -1 && (uni.getStorageSync('token') == null || uni.getStorageSync('token') == "")) {
+			return false
+		}
 		requestConfig.header.Authorization = uni.getStorageSync('token');
 		return requestConfig;
 	},

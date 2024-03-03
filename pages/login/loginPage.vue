@@ -1,15 +1,15 @@
 <template>
 
 	<view class="background-container">
-		<image src="https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/login.jpg" class="background-image"></image>
+		<u-image src="https://cdn.jsdelivr.net/gh/zishuQ/PicGo/img/login.jpg" custom-style="object-fit: cover;position: absolute;top: 0;left: 0;z-index: 0;" width="100%" height="100%" ></u-image>
 
 		<view style="margin-top: 60vh;">
-			<button @click="loginConfirm(null,true)" class="overlay-button"
-				style="background-color: blue;">业主登录</button>
+			<u-button
+				custom-style="width: 320px;height: 35px;display: flex;justify-content: center;align-items: center;"
+				@click="loginConfirm(null,true)" color="blue" throttle-time="500">业主登录</u-button>
 			<view class="test" style="margin-top: 20px; display: flex; flex-direction: row; align-items: center;">
-				<checkbox>
-					<!-- 这里不能使用<input type="checkbox"/> 会不显示 -->
-				</checkbox>
+				<u-checkbox-group><u-checkbox
+						@change="licenseDisagree = !licenseDisagree"></u-checkbox></u-checkbox-group>
 				<view style="margin-left: 2%; white-space: nowrap; font-size: 12px;">
 					<text>
 						我已阅读并同意
@@ -22,21 +22,17 @@
 				</view>
 			</view>
 		</view>
-
 		<u-modal :show="showDeal1" :title="userAgreement.title" @confirm="showDeal1=false">
 			<view class="slot-content">
 				<rich-text :nodes="userAgreement.content"></rich-text>
 			</view>
 		</u-modal>
-
 		<u-modal :show="showDeal2" :title="privacyAgreement.title" @confirm="showDeal2=false">
 			<view class="slot-content">
 				<rich-text :nodes="privacyAgreement.content"></rich-text>
 			</view>
 		</u-modal>
-
 		<loginModal :show="show" @getUserInfo="loginConfirm" @closeModal="show=false"></loginModal>
-
 	</view>
 </template>
 <script setup>
@@ -59,6 +55,7 @@
 	const showDeal1 = ref(false);
 	const showDeal2 = ref(false);
 	const title = ref("标题")
+	let licenseDisagree = ref(true)
 	const userAgreement = {
 		title: "用户服务协议",
 		content: `A如果本《协议》中的任何条款无论因何种原因完全或部分无效，或不具有执行力，或违反任何适用的法律，则该条款被视为删除，但本《协议》的其余条款仍应有效，并且有约束力。<br>
@@ -140,6 +137,13 @@
 	};
 
 	const loginConfirm = async (userInfo, verify = false) => {
+		if (licenseDisagree.value) {
+			uni.showToast({
+				title: "请先阅读并同意协议",
+				icon: "error"
+			})
+			return false;
+		}
 		const code = await getCode();
 		let userName = null;
 		let neighborhoodName = null;
@@ -172,9 +176,9 @@
 				reject("error")
 			}
 		}).catch(err => {
-			
+
 			uni.showToast({
-				title: ""+err,
+				title: "" + err,
 				icon: "error"
 			})
 		})

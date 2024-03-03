@@ -104,8 +104,6 @@
 					password: '123'
 				})
 			}
-			console.log('设置测试用户');
-			console.log(getLocalData('user-token'), 'admin');
 		}
 	}
 </script>

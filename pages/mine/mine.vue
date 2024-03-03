@@ -1,7 +1,7 @@
 <template>
 	<view style="background-color: #e6e6e6; height: 100vh;">
 		<topBlock :nickname="nickname" :toLoginShow="toLoginShow"></topBlock> <!-- 顶部栏 -->
-		<lineBlock></lineBlock> <!-- 信息列表 -->
+		<lineBlock v-if="lineShow"></lineBlock> <!-- 信息列表 -->
 	</view>
 
 </template>
@@ -16,7 +16,6 @@
 	import {
 		ref,
 		computed,
-		
 	} from 'vue';
 	import {
 		onLoad,
@@ -26,10 +25,24 @@
 		service
 	} from "../../utils/request";
 	let nickname = ref('')
-	let toLoginShow = ref(true)
-	const disabled = ref(true);
-
+	let toLoginShow = ref(false)
+	const disabled = ref(true)
+	let lineShow = ref(true)
 	onShow(() => {
+		if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == "") {
+			uni.reLaunch({
+				url: "/pages/login/loginPage"
+			})
+			toLoginShow.value = true
+		}
+		if (uni.getStorageSync('token') == null || uni.getStorageSync('token') == "") {
+			lineShow.value = false
+			toLoginShow.value = true
+			nickname.value = ""
+		}else{
+			lineShow.value = true
+			toLoginShow.value = false
+		}
 		service("/user/findByOpenid", "GET", null).then(res => {
 			if (res.msg == "success") {
 				nickname.value = "您好，" + res.data.name

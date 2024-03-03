@@ -8,7 +8,7 @@
 		<u-text :show="toLoginShow" @click="navigateToLoginPage" color="white" text="微信登录" margin="10px"></u-text>
 		<u-text :text="nickname" color="white" margin="10px"> </u-text>
 		<!-- <button class="avatar-button" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">微信登陆</button> -->
-		<u-icon name="setting-fill" color="white" size="25px" custom-style="margin-left: 21vh"></u-icon>
+		
 	</view>
 </template>
 
@@ -24,7 +24,7 @@
 	const avatarUrl = ref('');
 	const navigateToLoginPage = (e) => {
 		uni.navigateTo({
-			url: '/pages/mine/loginPage'
+			url: '/pages/login/loginPage'
 		});
 	}
 
@@ -47,12 +47,9 @@
 		try {
 			// 同步写入文件
 			fs.writeFileSync(tempFilePath, avatarByte, 'binary');
-			console.log("写入文件成功！")
-			console.log(tempFilePath)
 			return tempFilePath;
 
 		} catch (err) {
-			console.error('写入文件失败', err);
 			throw err;
 		}
 	};
